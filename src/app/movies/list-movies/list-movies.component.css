@@ -1,0 +1,44 @@
+.Movies-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+}
+
+.Movies-container>.Movie-container {
+    margin-bottom: 10px;
+    text-align: center;
+    margin-right: 2%;
+}
+
+
+/* .Movies-container {
+    /* display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    display: flex;
+    flex-wrap: nowrap;
+    background-color: DodgerBlue;
+}
+
+.Movie-container {
+    margin-bottom: 10px;
+    text-align: center;
+} */
+
+p {
+    max-width: 225px;
+    height: 44px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+img {
+    width: 225px;
+    height: 300px;
+}
+
+button {
+    margin-left: 1em;
+}
