@@ -10,6 +10,9 @@ import {MaterialModule} from './material/material.module';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { ListMoviesComponent } from './movies/list-movies/list-movies.component';
 import { IndexGenreComponent } from './genre/index-genre/index-genre.component';
+import { AddGenreComponent } from './genre/add-genre/add-genre.component';
+import { IndexActorsComponent } from './Actors/index-actors/index-actors.component';
+import { AddActorsComponent } from './Actors/add-actors/add-actors.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,10 @@ import { IndexGenreComponent } from './genre/index-genre/index-genre.component';
     LandingPageComponent,
     NavBarComponent,
     ListMoviesComponent,
-    IndexGenreComponent
+    IndexGenreComponent,
+    AddGenreComponent,
+    IndexActorsComponent,
+    AddActorsComponent
   ],
   imports: [
     BrowserModule,
