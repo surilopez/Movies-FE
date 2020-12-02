@@ -14,9 +14,14 @@ import { AddGenreComponent } from './genre/add-genre/add-genre.component';
 import { IndexActorsComponent } from './Actors/index-actors/index-actors.component';
 import { AddActorsComponent } from './Actors/add-actors/add-actors.component';
 import { AddMovieComponent } from './movies/add-movie/add-movie.component';
+import { EditMovieComponent } from './movies/edit-movie/edit-movie.component';
 
 import { AddTheaterComponent } from './Theaters/add-theater/add-theater.component';
 import { IndexTheaterComponent } from './Theaters/index-theater/index-theater.component';
+import { EditActorsComponent } from './Actors/edit-actors/edit-actors.component';
+
+import { EditTheaterComponent } from './Theaters/edit-theater/edit-theater.component';
+import { EditGenreComponent } from './genre/edit-genre/edit-genre.component';
 
 
 @NgModule({
@@ -32,6 +37,10 @@ import { IndexTheaterComponent } from './Theaters/index-theater/index-theater.co
     AddMovieComponent,
     AddTheaterComponent,
     IndexTheaterComponent,
+    EditActorsComponent,
+    EditMovieComponent,
+    EditTheaterComponent,
+    EditGenreComponent,
 
   ],
   imports: [
