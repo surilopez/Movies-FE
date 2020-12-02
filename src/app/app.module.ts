@@ -13,10 +13,11 @@ import { IndexGenreComponent } from './genre/index-genre/index-genre.component';
 import { AddGenreComponent } from './genre/add-genre/add-genre.component';
 import { IndexActorsComponent } from './Actors/index-actors/index-actors.component';
 import { AddActorsComponent } from './Actors/add-actors/add-actors.component';
-import { AddMovieComponent } from './Movies/add-movie/add-movie.component';
+import { AddMovieComponent } from './movies/add-movie/add-movie.component';
+
 import { AddTheaterComponent } from './Theaters/add-theater/add-theater.component';
 import { IndexTheaterComponent } from './Theaters/index-theater/index-theater.component';
-import { IndexMovieComponent } from './Movies/index-movie/index-movie.component';
+
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { IndexMovieComponent } from './Movies/index-movie/index-movie.component'
     AddMovieComponent,
     AddTheaterComponent,
     IndexTheaterComponent,
-    IndexMovieComponent
+
   ],
   imports: [
     BrowserModule,

@@ -5,3 +5,9 @@
     z-index: 1000;
     background-color: #AB1A25;
 }
+
+.mat-button,
+.mat-icon-button,
+.mat-stroked-button {
+    color: #E1D39E;
+}
