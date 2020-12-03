@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Location } from '@angular/common'
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-filter-movie',
@@ -46,7 +48,9 @@ export class FilterMovieComponent implements OnInit {
     },
   ]
   constructor(
-    private formbuilder: FormBuilder
+    private formbuilder: FormBuilder,
+    private location: Location,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   SearchMovieForm!: FormGroup
@@ -66,18 +70,21 @@ export class FilterMovieComponent implements OnInit {
     CommingSoon: false,
     onTheaters: false
   }
+  allMovies = this.Movies
 
   ngOnInit(): void {
     this.SearchMovieForm = this.formbuilder.group(this.InitForm)
-
+    this.filterByURLValues()
+    this.FilterMovies(this.SearchMovieForm.value)
     this.SearchMovieForm.valueChanges.subscribe(values => {
       this.Movies = this.allMovies;
       this.FilterMovies(values)
+      this.UpdateUrlByParamFilter();
     })
 
   }
 
-  allMovies = this.Movies
+
   FilterMovies(values: any) {
     if (values.Title) {
       this.Movies = this.Movies.filter(movie => movie.Title.indexOf(values.Title) !== -1)
@@ -95,6 +102,47 @@ export class FilterMovieComponent implements OnInit {
     }
 
   }
+
+  private filterByURLValues() {
+    this.activatedRoute.queryParams.subscribe((param) => {
+      var obj: any = {}
+      if (param.Title) {
+        obj.Title = param.Title
+      }
+      if (param.GenreID) {
+        obj.GenreID = Number(param.GenreID)
+      }
+      if (param.CommingSoon) {
+        obj.CommingSoon = param.CommingSoon
+      }
+      if (param.CommingSoon) {
+        obj.onTheaters = param.onTheaters
+      }
+      console.log(obj)
+      this.SearchMovieForm.patchValue(obj)
+    })
+  }
+
+  private UpdateUrlByParamFilter() {
+    var queryStrings = [];
+    var formValues = this.SearchMovieForm.value;
+    if (formValues.Title) {
+      queryStrings.push(`Title=${formValues.Title}`)
+    }
+    if (formValues.GenreID) {
+      queryStrings.push(`GenreID=${formValues.GenreID}`)
+    }
+    if (formValues.CommingSoon) {
+      queryStrings.push(`CommingSoon=${formValues.CommingSoon}`)
+    }
+    if (formValues.onTheaters) {
+      queryStrings.push(`onTheaters=${formValues.onTheaters}`)
+    }
+    this.location.replaceState('Movie/Search', queryStrings.join('&'))
+  }
+
+
+
   CleanFilters() {
     this.SearchMovieForm.patchValue(this.InitForm)
     this.Movies = this.allMovies;
