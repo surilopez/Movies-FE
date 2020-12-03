@@ -1,14 +1,2 @@
 <h2>Add Genre</h2>
-<form [formGroup]="form" (submit)="SaveNewGenre()">
-    <mat-form-field appearance="outline">
-        <mat-label>Name</mat-label>
-        <input formControlName="Name" matInput required/>
-        <mat-error *ngIf="form.invalid">
-            {{GetErrorFieldName()}}
-        </mat-error>
-    </mat-form-field>
-    <div>
-        <button mat-flat-button color="primary" [disabled]="form.invalid"> Save </button>
-        <a mat-stroked-button routerLink="/Genre" color="warn">Cancel</a>
-    </div>
-</form>
+<app-form-genre (submit)="SaveGenre($event)"></app-form-genre>
