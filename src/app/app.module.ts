@@ -23,6 +23,7 @@ import { EditActorsComponent } from './Actors/edit-actors/edit-actors.component'
 import { EditTheaterComponent } from './Theaters/edit-theater/edit-theater.component';
 import { EditGenreComponent } from './genre/edit-genre/edit-genre.component';
 
+import {ReactiveFormsModule} from '@angular/forms'
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { EditGenreComponent } from './genre/edit-genre/edit-genre.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
