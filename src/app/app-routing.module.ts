@@ -12,6 +12,7 @@ import { AddTheaterComponent } from './Theaters/add-theater/add-theater.componen
 import { EditTheaterComponent } from './Theaters/edit-theater/edit-theater.component';
 import { AddMovieComponent } from './movies/add-movie/add-movie.component';
 import { EditMovieComponent } from './movies/edit-movie/edit-movie.component';
+import { FilterMovieComponent } from './movies/filter-movie/filter-movie.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'Theater/Add', component: AddTheaterComponent },
   { path: 'Theater/Edit/:id', component: EditTheaterComponent },
   { path: 'Movie/Add', component: AddMovieComponent },
+  { path: 'Movie/Search', component: FilterMovieComponent },
   { path: 'Movie/Edit/:id', component: EditMovieComponent },
   { path: '**', redirectTo:'' }
 ];

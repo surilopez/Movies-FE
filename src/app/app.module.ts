@@ -24,7 +24,8 @@ import { EditTheaterComponent } from './Theaters/edit-theater/edit-theater.compo
 import { EditGenreComponent } from './genre/edit-genre/edit-genre.component';
 
 import {ReactiveFormsModule} from '@angular/forms';
-import { FormGenreComponent } from './genre/form-genre/form-genre.component'
+import { FormGenreComponent } from './genre/form-genre/form-genre.component';
+import { FilterMovieComponent } from './movies/filter-movie/filter-movie.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { FormGenreComponent } from './genre/form-genre/form-genre.component'
     EditTheaterComponent,
     EditGenreComponent,
     FormGenreComponent,
+    FilterMovieComponent,
 
   ],
   imports: [
