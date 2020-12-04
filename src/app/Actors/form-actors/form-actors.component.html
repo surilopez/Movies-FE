@@ -1,0 +1,17 @@
+<form (submit)=" onSubmit()" [formGroup]="formAddActor">
+    <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input formControlName="Name" matInput required/>
+        <mat-error>Field Name is Required </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Date Of Birth</mat-label>
+        <input formControlName="DateOfBirth" matInput [matDatepicker]="picker" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <div>
+        <button mat-flat-button color="primary" [disabled]="formAddActor.invalid"> Save </button>
+        <a mat-stroked-button routerLink="/Actors" color="warn">Cancel</a>
+    </div>
+</form>
