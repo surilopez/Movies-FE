@@ -1,0 +1,16 @@
+<mat-tab-group>
+    <mat-tab label="Edit">
+        <mat-form-field appearance="fill">
+            <mat-label>Biografy</mat-label>
+            <textarea (input)="inputTextArea($event)" matInput>
+
+            </textarea>
+        </mat-form-field>
+    </mat-tab>
+    <mat-tab label="Preview">
+        <markdown [data]="MarkDownContent" ngPreserveWhitespaces>
+
+        </markdown>
+    </mat-tab>
+
+</mat-tab-group>

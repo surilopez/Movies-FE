@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {MarkdownModule} from 'ngx-markdown'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -28,6 +29,7 @@ import { FormGenreComponent } from './genre/form-genre/form-genre.component';
 import { FilterMovieComponent } from './movies/filter-movie/filter-movie.component';
 import { FormActorsComponent } from './Actors/form-actors/form-actors.component';
 import { UploadImagesComponent } from './Utils/upload-images/upload-images.component';
+import { MarkDownInputComponent } from './Utils/mark-down-input/mark-down-input.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +52,7 @@ import { UploadImagesComponent } from './Utils/upload-images/upload-images.compo
     FilterMovieComponent,
     FormActorsComponent,
     UploadImagesComponent,
+    MarkDownInputComponent,
 
   ],
   imports: [
@@ -57,7 +60,8 @@ import { UploadImagesComponent } from './Utils/upload-images/upload-images.compo
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MarkdownModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

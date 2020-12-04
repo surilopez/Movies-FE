@@ -11,6 +11,7 @@
         <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
     <app-upload-images [UrlImage]="model?.ActorImage" (uploadFile)="uploadFile($event)"></app-upload-images>
+    <app-mark-down-input (BiografyChange)="changeMarkDown($event)"></app-mark-down-input>
     <div>
         <button mat-flat-button color="primary" [disabled]="formAddActor.invalid"> Save </button>
         <a mat-stroked-button routerLink="/Actors" color="warn">Cancel</a>

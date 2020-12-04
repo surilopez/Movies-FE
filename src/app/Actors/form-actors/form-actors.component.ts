@@ -25,7 +25,8 @@ export class FormActorsComponent implements OnInit {
         validators: [Validators.required],
       }],
       DateOfBirth: '',
-      ActorImage: ''
+      ActorImage: '',
+      Biografy:''
     })
     if (this.model !== undefined) {
       this.formAddActor.patchValue(this.model)
@@ -35,6 +36,10 @@ export class FormActorsComponent implements OnInit {
 
   uploadFile(file: File) {
     this.formAddActor.get('ActorImage')?.setValue(file);
+  }
+
+  changeMarkDown(txt:string){
+    this.formAddActor.get('Biografy')?.setValue(txt);
   }
 
   onSubmit() {
