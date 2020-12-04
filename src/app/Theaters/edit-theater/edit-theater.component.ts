@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import {  TheaterCreationDTO, TheaterDTO } from '../theater';
 
 @Component({
   selector: 'app-edit-theater',
@@ -8,12 +9,16 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class EditTheaterComponent implements OnInit {
 
+  model: TheaterDTO = {Name:'Gran IMAX Wistom Salem'}
+
   constructor(private activedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.activedRoute.params.subscribe(params => {
-     // alert(params.id)
+      // alert(params.id)
     })
   }
-
+  SaveChanges(theater: TheaterCreationDTO) {
+    console.log(theater)
+  }
 }

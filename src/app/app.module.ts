@@ -30,6 +30,7 @@ import { FilterMovieComponent } from './movies/filter-movie/filter-movie.compone
 import { FormActorsComponent } from './Actors/form-actors/form-actors.component';
 import { UploadImagesComponent } from './Utils/upload-images/upload-images.component';
 import { MarkDownInputComponent } from './Utils/mark-down-input/mark-down-input.component';
+import { FormTheaterComponent } from './Theaters/form-theater/form-theater.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { MarkDownInputComponent } from './Utils/mark-down-input/mark-down-input.
     FormActorsComponent,
     UploadImagesComponent,
     MarkDownInputComponent,
+    FormTheaterComponent,
 
   ],
   imports: [

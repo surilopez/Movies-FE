@@ -1,0 +1,11 @@
+<form [formGroup]="formTheaters" (submit)=" onSubmit()">
+    <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input formControlName="Name" matInput required/>
+        <mat-error>Field Name is Required </mat-error>
+    </mat-form-field>
+    <div>
+        <button mat-flat-button color="primary" [disabled]="formTheaters.invalid"> Save </button>
+        <a mat-stroked-button routerLink="/Theater" color="warn">Cancel</a>
+    </div>
+</form>
