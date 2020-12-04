@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActorCreationDTO } from '../actor';
+import { ActorCreationDTO, ActorDTO } from '../actor';
 
 @Component({
   selector: 'app-form-actors',
@@ -10,7 +10,7 @@ import { ActorCreationDTO } from '../actor';
 export class FormActorsComponent implements OnInit {
 
   @Input()
-  model!: ActorCreationDTO;
+  model!: ActorDTO;
 
   @Output()
   submit: EventEmitter<ActorCreationDTO> = new EventEmitter<ActorCreationDTO>()
@@ -24,12 +24,17 @@ export class FormActorsComponent implements OnInit {
       Name: ['', {
         validators: [Validators.required],
       }],
-      DateOfBirth: ''
+      DateOfBirth: '',
+      ActorImage: ''
     })
     if (this.model !== undefined) {
       this.formAddActor.patchValue(this.model)
     }
 
+  }
+
+  uploadFile(file: File) {
+    this.formAddActor.get('ActorImage')?.setValue(file);
   }
 
   onSubmit() {

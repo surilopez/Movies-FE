@@ -27,6 +27,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import { FormGenreComponent } from './genre/form-genre/form-genre.component';
 import { FilterMovieComponent } from './movies/filter-movie/filter-movie.component';
 import { FormActorsComponent } from './Actors/form-actors/form-actors.component';
+import { UploadImagesComponent } from './Utils/upload-images/upload-images.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { FormActorsComponent } from './Actors/form-actors/form-actors.component'
     FormGenreComponent,
     FilterMovieComponent,
     FormActorsComponent,
+    UploadImagesComponent,
 
   ],
   imports: [
