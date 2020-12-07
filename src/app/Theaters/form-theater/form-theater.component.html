@@ -4,6 +4,12 @@
         <input formControlName="Name" matInput required/>
         <mat-error>Field Name is Required </mat-error>
     </mat-form-field>
+
+    <h4>Select the Theater on the Map</h4>
+    <div>
+        <app-maps (coordinate)="coordinateThetaer($event)" [InitPosition]="InitPosition"></app-maps>
+    </div>
+
     <div>
         <button mat-flat-button color="primary" [disabled]="formTheaters.invalid"> Save </button>
         <a mat-stroked-button routerLink="/Theater" color="warn">Cancel</a>

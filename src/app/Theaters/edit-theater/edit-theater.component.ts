@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import {  TheaterCreationDTO, TheaterDTO } from '../theater';
+import { TheaterCreationDTO, TheaterDTO } from '../theater';
 
 @Component({
   selector: 'app-edit-theater',
@@ -9,7 +9,11 @@ import {  TheaterCreationDTO, TheaterDTO } from '../theater';
 })
 export class EditTheaterComponent implements OnInit {
 
-  model: TheaterDTO = {Name:'Gran IMAX Wistom Salem'}
+  model: TheaterDTO = {
+    Name: 'The Grand IMAX Winstom Salem',
+    Latitude: 36.17417482491187,
+    Longitude: -80.27356982231142
+  }
 
   constructor(private activedRoute: ActivatedRoute) { }
 

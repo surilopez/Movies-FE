@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {MarkdownModule} from 'ngx-markdown'
+import {MarkdownModule} from 'ngx-markdown';
+import {LeafletModule} from '@asymmetrik/ngx-leaflet'
+import "leaflet/dist/images/marker-shadow.png"
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -31,6 +33,8 @@ import { FormActorsComponent } from './Actors/form-actors/form-actors.component'
 import { UploadImagesComponent } from './Utils/upload-images/upload-images.component';
 import { MarkDownInputComponent } from './Utils/mark-down-input/mark-down-input.component';
 import { FormTheaterComponent } from './Theaters/form-theater/form-theater.component';
+import { from } from 'rxjs';
+import { MapsComponent } from './Utils/maps/maps.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +59,7 @@ import { FormTheaterComponent } from './Theaters/form-theater/form-theater.compo
     UploadImagesComponent,
     MarkDownInputComponent,
     FormTheaterComponent,
+    MapsComponent,
 
   ],
   imports: [
@@ -63,6 +68,7 @@ import { FormTheaterComponent } from './Theaters/form-theater/form-theater.compo
     BrowserAnimationsModule,
     MaterialModule,
     ReactiveFormsModule,
+    LeafletModule,
     MarkdownModule.forRoot()
   ],
   providers: [],
