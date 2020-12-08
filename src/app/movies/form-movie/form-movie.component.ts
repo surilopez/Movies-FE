@@ -34,4 +34,12 @@ export class FormMovieComponent implements OnInit {
     this.NewMovieOnSubmit.emit(this.form.value)
   }
 
+  uploadFile(file: File) {
+    this.form.get('Img')?.setValue(file);
+  }
+
+  changeMarkDown(txt:string){
+    this.form.get('Info')?.setValue(txt);
+  }
+
 }

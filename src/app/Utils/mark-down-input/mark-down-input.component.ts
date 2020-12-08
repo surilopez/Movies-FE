@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-mark-down-input',
@@ -8,16 +8,19 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 export class MarkDownInputComponent implements OnInit {
 
   constructor() { }
+  @Input()
+  placeholderTextAre: string = 'Text'
 
-  MarkDownContent=''
+
+  MarkDownContent = ''
   @Output()
-  BiografyChange: EventEmitter<string> = new EventEmitter<string>()
+  TextAreaChange: EventEmitter<string> = new EventEmitter<string>()
 
   ngOnInit(): void {
   }
   inputTextArea(event: Event) {
-   // console.log((<HTMLInputElement>event.target).value)
-    this.MarkDownContent= (<HTMLInputElement>event.target).value
-    this.BiografyChange.emit(this.MarkDownContent)
+    // console.log((<HTMLInputElement>event.target).value)
+    this.MarkDownContent = (<HTMLInputElement>event.target).value
+    this.TextAreaChange.emit(this.MarkDownContent)
   }
 }
