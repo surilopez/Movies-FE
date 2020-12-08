@@ -1,6 +1,6 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MovieCreationDTO } from 'src/app/Models/movies';
+import { MovieCreationDTO, MovieDTO } from 'src/app/Models/movies';
 
 @Component({
   selector: 'app-form-movie',
@@ -8,6 +8,17 @@ import { MovieCreationDTO } from 'src/app/Models/movies';
   styleUrls: ['./form-movie.component.css']
 })
 export class FormMovieComponent implements OnInit {
+
+  @Input()
+  model: MovieDTO = {
+    Title: '',
+    Trailer: '',
+    Info: '',
+    onTheater: false,
+    ReleaseDate: new Date(),
+    Img:''
+
+  };
 
   @Output()
   NewMovieOnSubmit: EventEmitter<MovieCreationDTO> = new EventEmitter<MovieCreationDTO>()
@@ -28,6 +39,10 @@ export class FormMovieComponent implements OnInit {
       ReleaseDate: '',
       Img: ''
     })
+
+    if (this.model != undefined) {
+      this.form.patchValue(this.model)
+    }
   }
 
   KeepChanges() {
@@ -38,7 +53,7 @@ export class FormMovieComponent implements OnInit {
     this.form.get('Img')?.setValue(file);
   }
 
-  changeMarkDown(txt:string){
+  changeMarkDown(txt: string) {
     this.form.get('Info')?.setValue(txt);
   }
 

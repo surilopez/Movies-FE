@@ -26,7 +26,7 @@ import { EditActorsComponent } from './Actors/edit-actors/edit-actors.component'
 import { EditTheaterComponent } from './Theaters/edit-theater/edit-theater.component';
 import { EditGenreComponent } from './genre/edit-genre/edit-genre.component';
 
-import {ReactiveFormsModule} from '@angular/forms';
+import {ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { FormGenreComponent } from './genre/form-genre/form-genre.component';
 import { FilterMovieComponent } from './movies/filter-movie/filter-movie.component';
 import { FormActorsComponent } from './Actors/form-actors/form-actors.component';
@@ -70,6 +70,7 @@ import { FormMovieComponent } from './movies/form-movie/form-movie.component';
     BrowserAnimationsModule,
     MaterialModule,
     ReactiveFormsModule,
+    FormsModule,
     LeafletModule,
     MarkdownModule.forRoot()
   ],
