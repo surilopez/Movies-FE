@@ -35,6 +35,7 @@ import { MarkDownInputComponent } from './Utils/mark-down-input/mark-down-input.
 import { FormTheaterComponent } from './Theaters/form-theater/form-theater.component';
 import { from } from 'rxjs';
 import { MapsComponent } from './Utils/maps/maps.component';
+import { FormMovieComponent } from './movies/form-movie/form-movie.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { MapsComponent } from './Utils/maps/maps.component';
     MarkDownInputComponent,
     FormTheaterComponent,
     MapsComponent,
+    FormMovieComponent,
 
   ],
   imports: [

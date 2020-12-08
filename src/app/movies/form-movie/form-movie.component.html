@@ -1,0 +1,39 @@
+<form [formGroup]="form" (submit)="KeepChanges()">
+
+    <mat-form-field appearance="outline">
+        <mat-label>Title</mat-label>
+        <input formControlName="Title" matInput required/>
+        <mat-error>
+            The field Name is required
+        </mat-error>
+    </mat-form-field>
+
+    <div class="CheckBox-Container">
+        <mat-checkbox formControlName="onTheater">On theater</mat-checkbox>
+    </div>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Trailer</mat-label>
+        <input formControlName="Trailer" matInput />
+    </mat-form-field>
+
+
+
+    <mat-form-field appearance="outline">
+        <mat-label>Release Date</mat-label>
+        <input formControlName="ReleaseDate" matInput [matDatepicker]="ReleaseDatePicker" matInput />
+        <mat-datepicker-toggle matSuffix [for]="ReleaseDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #ReleaseDatePicker></mat-datepicker>
+    </mat-form-field>
+
+
+    <h4>Select Image</h4>
+    <app-upload-images></app-upload-images>
+    <h4>Information:</h4>
+    <app-mark-down-input></app-mark-down-input>
+
+    <div>
+        <button mat-flat-button color="primary" [disabled]="form.invalid"> Save </button>
+        <a mat-stroked-button routerLink="/" color="warn">Cancel</a>
+    </div>
+</form>
