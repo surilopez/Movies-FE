@@ -11,7 +11,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox'
 import {MatDatepickerModule} from '@angular/material/datepicker'
 import {MatNativeDateModule} from '@angular/material/core'
 import {MatTabsModule} from '@angular/material/tabs'
-import { from } from 'rxjs';
+import {MatAutocompleteModule} from '@angular/material/autocomplete'
+
 
 @NgModule({
   declarations: [],
@@ -25,7 +26,8 @@ import { from } from 'rxjs';
     MatCheckboxModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatTabsModule
+    MatTabsModule,
+    MatAutocompleteModule
   ],
   imports: [
     CommonModule

@@ -37,6 +37,7 @@ import { from } from 'rxjs';
 import { MapsComponent } from './Utils/maps/maps.component';
 import { FormMovieComponent } from './movies/form-movie/form-movie.component';
 import { MultipleSelectorComponent } from './Utils/multiple-selector/multiple-selector.component';
+import { AutoCompleteActorsComponent } from './Actors/auto-complete-actors/auto-complete-actors.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { MultipleSelectorComponent } from './Utils/multiple-selector/multiple-se
     MapsComponent,
     FormMovieComponent,
     MultipleSelectorComponent,
+    AutoCompleteActorsComponent,
 
   ],
   imports: [
