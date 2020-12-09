@@ -32,6 +32,8 @@
     <h4>Information:</h4>
     <app-mark-down-input [MarkDownContent]="model.Info" [placeholderTextAre]="'Information'" (TextAreaChange)="changeMarkDown($event)"></app-mark-down-input>
 
+    <h4>Genres</h4>
+    <app-multiple-selector></app-multiple-selector>
     <div>
         <button mat-flat-button color="primary" [disabled]="form.invalid"> Save </button>
         <a mat-stroked-button routerLink="/" color="warn">Cancel</a>

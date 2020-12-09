@@ -36,6 +36,7 @@ import { FormTheaterComponent } from './Theaters/form-theater/form-theater.compo
 import { from } from 'rxjs';
 import { MapsComponent } from './Utils/maps/maps.component';
 import { FormMovieComponent } from './movies/form-movie/form-movie.component';
+import { MultipleSelectorComponent } from './Utils/multiple-selector/multiple-selector.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { FormMovieComponent } from './movies/form-movie/form-movie.component';
     FormTheaterComponent,
     MapsComponent,
     FormMovieComponent,
+    MultipleSelectorComponent,
 
   ],
   imports: [

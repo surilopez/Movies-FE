@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MovieCreationDTO, MovieDTO } from 'src/app/Models/movies';
+import { SelectorMultiple } from 'src/app/Models/SelectorMultiple';
 
 @Component({
   selector: 'app-form-movie',
@@ -16,7 +17,7 @@ export class FormMovieComponent implements OnInit {
     Info: '',
     onTheater: false,
     ReleaseDate: new Date(),
-    Img:''
+    Img: ''
 
   };
 
@@ -27,6 +28,15 @@ export class FormMovieComponent implements OnInit {
     private formBuilder: FormBuilder
   ) { }
   form!: FormGroup;
+  NoSelectedGenres: SelectorMultiple[] = [
+    { key: 0, value: "All Genres" },
+    { key: 1, value: "Comedy" },
+    { key: 2, value: "Adventure" },
+    { key: 3, value: "Romantic" },
+    { key: 4, value: "Dramas" },
+    { key: 5, value: "Action" },
+  ]
+
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       Title: [
