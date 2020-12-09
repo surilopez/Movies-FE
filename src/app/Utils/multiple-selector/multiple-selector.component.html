@@ -7,7 +7,7 @@
         <button type="button" (click)="UnSelectAll()"><<</button>
     </div>
     <ul>
-        <li *ngFor="let item of NoSelected let index= index" (click)="UnSelecteItem(item,index)">{{item.value}}</li>
+        <li *ngFor="let item of Selected let index= index" (click)="UnSelecteItem(item,index)">{{item.value}}</li>
     </ul>
 
 </div>

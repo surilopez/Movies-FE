@@ -29,13 +29,24 @@ export class FormMovieComponent implements OnInit {
   ) { }
   form!: FormGroup;
   NoSelectedGenres: SelectorMultiple[] = [
-    { key: 0, value: "All Genres" },
     { key: 1, value: "Comedy" },
     { key: 2, value: "Adventure" },
     { key: 3, value: "Romantic" },
     { key: 4, value: "Dramas" },
     { key: 5, value: "Action" },
   ]
+
+  SelectedGenres: SelectorMultiple[] = []
+
+  NoSelectedTheaters: SelectorMultiple[] = [
+    { key: 1, value: "Grand IMAX" },
+    { key: 2, value: "AMC Hanes 12" },
+    { key: 3, value: "Huber Theater" },
+    { key: 4, value: "Regal Greensboro Grande & RPX" },
+    { key: 5, value: "Regal Palladium & IMAX" },
+  ]
+
+  SelectedTheaters: SelectorMultiple[] = []
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -47,7 +58,9 @@ export class FormMovieComponent implements OnInit {
       onTheater: false,
       Trailer: '',
       ReleaseDate: '',
-      Img: ''
+      Img: '',
+      GenresId:'',
+      TheatersId:''
     })
 
     if (this.model != undefined) {
@@ -56,6 +69,10 @@ export class FormMovieComponent implements OnInit {
   }
 
   KeepChanges() {
+    const genresId = this.SelectedGenres.map(value=>value.key)
+    const theatersId = this.SelectedTheaters.map(value=>value.key)
+    this.form.get('GenresId')?.setValue(genresId);
+    this.form.get('TheatersId')?.setValue(theatersId);
     this.NewMovieOnSubmit.emit(this.form.value)
   }
 
