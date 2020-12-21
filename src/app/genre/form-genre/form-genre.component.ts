@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FirstLetterCapital } from 'src/app/Utils/FirstLetterCapital';
-import { GenreCreationDTO } from '../genre';
+import { GenreCreationDTO } from '../../Models/genre';
 
 @Component({
   selector: 'app-form-genre',

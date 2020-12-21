@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { GenreCreationDTO } from '../genre';
+import { GenreCreationDTO } from '../../Models/genre';
 
 @Component({
   selector: 'app-edit-genre',
