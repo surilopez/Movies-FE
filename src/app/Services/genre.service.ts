@@ -1,16 +1,27 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { GenreDTO } from '../Models/genre';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { GenreCreationDTO, GenreDTO } from '../Models/genre';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GenreService {
 
-  constructor() { }
+  constructor(
+    private httpClient: HttpClient
+  ) { }
+
+  private apiUrl = environment.apiUrl + 'genres'
 
 
-  public GetAllGenres(): GenreDTO[] {
-    return [{ id: 1, Name: "Comedy" }]
+  public GetAllGenres(): Observable<GenreDTO[]> {
+    return this.httpClient.get<GenreDTO[]>(this.apiUrl)
+  }
+
+  public AddNewGenre(genre: GenreCreationDTO) {
+    return this.httpClient.post(this.apiUrl, genre)
   }
 
 }

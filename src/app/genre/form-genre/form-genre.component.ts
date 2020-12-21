@@ -15,7 +15,7 @@ export class FormGenreComponent implements OnInit {
   @Input()
   model?: GenreCreationDTO
   @Output()
-  submit: EventEmitter<GenreCreationDTO> = new EventEmitter<GenreCreationDTO>();
+  onSubmit: EventEmitter<GenreCreationDTO> = new EventEmitter<GenreCreationDTO>();
   constructor(
     private router: Router,
     private formBuilder: FormBuilder
@@ -40,7 +40,7 @@ export class FormGenreComponent implements OnInit {
   }
 
   SaveGenre() {
-    this.submit.emit(this.form.value)
+    this.onSubmit.emit(this.form.value)
   }
 
   GetErrorFieldName() {

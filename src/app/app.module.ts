@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule} from '@angular/common/http'
+
 import {MarkdownModule} from 'ngx-markdown';
 import {LeafletModule} from '@asymmetrik/ngx-leaflet'
 import "leaflet/dist/images/marker-shadow.png"
@@ -76,6 +78,7 @@ import { AutoCompleteActorsComponent } from './Actors/auto-complete-actors/auto-
     ReactiveFormsModule,
     FormsModule,
     LeafletModule,
+    HttpClientModule,
     MarkdownModule.forRoot()
   ],
   providers: [],

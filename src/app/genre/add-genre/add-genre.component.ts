@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { GenreService } from 'src/app/Services/genre.service';
 import { FirstLetterCapital } from 'src/app/Utils/FirstLetterCapital';
 import { GenreCreationDTO } from '../../Models/genre';
 
@@ -14,16 +15,20 @@ export class AddGenreComponent implements OnInit {
 
   constructor(
     private router: Router,
-    ) {
+    private genreService: GenreService
+  ) {
 
   }
 
   ngOnInit(): void {
   }
-  SaveGenre(Genre: GenreCreationDTO ) {
-    //Function for save Genre
-    console.log(Genre)
-    this.router.navigate(['/Genre']);
+  SaveGenre(genre: GenreCreationDTO) {
+    this.genreService.AddNewGenre(genre).subscribe(() => {
+      this.router.navigate(['/Genre']);
+    },error=>{
+      console.error(error)
+    })
+
   }
 
 }
