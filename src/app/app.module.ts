@@ -41,6 +41,7 @@ import { FormMovieComponent } from './movies/form-movie/form-movie.component';
 import { MultipleSelectorComponent } from './Utils/multiple-selector/multiple-selector.component';
 import { AutoCompleteActorsComponent } from './Actors/auto-complete-actors/auto-complete-actors.component';
 import { ShowErrorsComponent } from './Utils/show-errors/show-errors.component';
+import { GenericListComponent } from './Utils/generic-list/generic-list.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +71,7 @@ import { ShowErrorsComponent } from './Utils/show-errors/show-errors.component';
     MultipleSelectorComponent,
     AutoCompleteActorsComponent,
     ShowErrorsComponent,
+    GenericListComponent,
 
   ],
   imports: [

@@ -1,23 +1,21 @@
-<ng-container contenedor>
-    <div class="Movies-container">
+<app-generic-list [elementsToList]="MoviesOnTheaters">
+    <ng-container contenedor>
+        <div class="Movies-container">
 
-        <div *ngIf="MoviesOnTheaters?.length===0">
-            <p>There aren't movies to show</p>
-        </div>
-
-        <div *ngFor="let movie of MoviesOnTheaters; let index=index" class="Movie-container">
-            <a>
-                <img [src]="movie.Img" alt="Movie Poster" />
-            </a>
-            <p> <a>
+            <div *ngFor="let movie of MoviesOnTheaters; let index=index" class="Movie-container">
+                <a>
+                    <img [src]="movie.Img" alt="Movie Poster" />
+                </a>
+                <p> <a>
               {{movie.Title}}
             </a>
-            </p>
-            <div>
-                <a mat-flat-button color="primary">Edit</a>
-                <button mat-flat-button color="warn" type="button">Delete</button>
+                </p>
+                <div>
+                    <a mat-flat-button color="primary">Edit</a>
+                    <button mat-flat-button color="warn" type="button">Delete</button>
+                </div>
             </div>
         </div>
-    </div>
 
-</ng-container>
+    </ng-container>
+</app-generic-list>

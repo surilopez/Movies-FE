@@ -1,0 +1,12 @@
+<div *ngIf="!elementsToList">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="elementsToList?.length===0">
+    <p>There aren't Content to show</p>
+</div>
+
+<ng-container *ngIf="elementsToList && elementsToList.length > 0">
+    <ng-content select="[contenedor]">
+    </ng-content>
+</ng-container>
