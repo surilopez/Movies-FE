@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GenreService } from 'src/app/Services/genre.service';
 import { FirstLetterCapital } from 'src/app/Utils/FirstLetterCapital';
+import { ParseErrorsAPI } from 'src/app/Utils/helpers';
 import { GenreCreationDTO } from '../../Models/genre';
 
 @Component({
@@ -13,7 +14,9 @@ import { GenreCreationDTO } from '../../Models/genre';
 export class AddGenreComponent implements OnInit {
   public form!: FormGroup;
 
-  constructor(
+  frmErrors: string[] = [];
+
+    constructor(
     private router: Router,
     private genreService: GenreService
   ) {
@@ -22,11 +25,12 @@ export class AddGenreComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
   SaveGenre(genre: GenreCreationDTO) {
     this.genreService.AddNewGenre(genre).subscribe(() => {
       this.router.navigate(['/Genre']);
-    },error=>{
-      console.error(error)
+    },(error)=>{
+      this.frmErrors = ParseErrorsAPI(error)
     })
 
   }

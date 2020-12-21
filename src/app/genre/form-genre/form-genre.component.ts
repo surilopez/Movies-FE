@@ -13,6 +13,9 @@ export class FormGenreComponent implements OnInit {
   public form!: FormGroup;
 
   @Input()
+  frmErrors: string[] = [];
+
+  @Input()
   model?: GenreCreationDTO
   @Output()
   onSubmit: EventEmitter<GenreCreationDTO> = new EventEmitter<GenreCreationDTO>();
