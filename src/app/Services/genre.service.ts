@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -16,8 +16,11 @@ export class GenreService {
   private apiUrl = environment.apiUrl + 'genres'
 
 
-  public GetAllGenres(): Observable<GenreDTO[]> {
-    return this.httpClient.get<GenreDTO[]>(this.apiUrl)
+  public GetAllGenres(page:number,recordsToShow:number): Observable<any> {
+    let params = new HttpParams();
+    params = params.append('Page',page.toString())
+    params = params.append('RecordsByPage',recordsToShow.toString())
+    return this.httpClient.get<GenreDTO[]|null>(this.apiUrl,{observe:'response',params})
   }
 
   public AddNewGenre(genre: GenreCreationDTO) {
