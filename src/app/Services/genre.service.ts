@@ -16,15 +16,24 @@ export class GenreService {
   private apiUrl = environment.apiUrl + 'genres'
 
 
-  public GetAllGenres(page:number,recordsToShow:number): Observable<any> {
+  public GetAllGenres(page: number, recordsToShow: number): Observable<any> {
     let params = new HttpParams();
-    params = params.append('Page',page.toString())
-    params = params.append('RecordsByPage',recordsToShow.toString())
-    return this.httpClient.get<GenreDTO[]|null>(this.apiUrl,{observe:'response',params})
+    params = params.append('Page', page.toString())
+    params = params.append('RecordsByPage', recordsToShow.toString())
+    return this.httpClient.get<GenreDTO[] | null>(this.apiUrl, { observe: 'response', params })
+  }
+
+  public getGenreById(id: number): Observable<GenreDTO> {
+
+    return this.httpClient.get<GenreDTO>(`${this.apiUrl}/${id}`)
   }
 
   public AddNewGenre(genre: GenreCreationDTO) {
     return this.httpClient.post(this.apiUrl, genre)
+  }
+
+  public editGenre(id: number, genre: GenreCreationDTO) {
+    return this.httpClient.put(`${this.apiUrl}/${id}`, genre)
   }
 
 }

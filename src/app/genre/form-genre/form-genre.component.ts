@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FirstLetterCapital } from 'src/app/Utils/FirstLetterCapital';
-import { GenreCreationDTO } from '../../Models/genre';
+import { GenreCreationDTO, GenreDTO } from '../../Models/genre';
 
 @Component({
   selector: 'app-form-genre',
@@ -16,7 +16,8 @@ export class FormGenreComponent implements OnInit {
   frmErrors: string[] = [];
 
   @Input()
-  model?: GenreCreationDTO
+  modelToEdit?: GenreDTO
+
   @Output()
   onSubmit: EventEmitter<GenreCreationDTO> = new EventEmitter<GenreCreationDTO>();
   constructor(
@@ -27,7 +28,7 @@ export class FormGenreComponent implements OnInit {
   ngOnInit(): void {
 
     this.form = this.formBuilder.group({
-      Name: ['',
+     name: ['',
         {
           validators: [
             Validators.required,
@@ -35,10 +36,11 @@ export class FormGenreComponent implements OnInit {
             FirstLetterCapital()
           ]
         }],
-    });
+        });
 
-    if (this.model !== undefined) {
-      this.form.patchValue(this.model);
+    if (this.modelToEdit !== undefined) {
+
+      this.form.patchValue(this.modelToEdit);
     }
   }
 
