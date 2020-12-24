@@ -36,4 +36,8 @@ export class GenreService {
     return this.httpClient.put(`${this.apiUrl}/${id}`, genre)
   }
 
+  public deleteGenreByID(id:number){
+    return this.httpClient.delete(`${this.apiUrl}/${id}`)
+  }
+
 }

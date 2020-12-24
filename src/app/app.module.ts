@@ -12,6 +12,8 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {MaterialModule} from './material/material.module';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { ListMoviesComponent } from './movies/list-movies/list-movies.component';
 import { IndexGenreComponent } from './genre/index-genre/index-genre.component';
@@ -83,7 +85,8 @@ import { GenericListComponent } from './Utils/generic-list/generic-list.componen
     FormsModule,
     LeafletModule,
     HttpClientModule,
-    MarkdownModule.forRoot()
+    MarkdownModule.forRoot(),
+    SweetAlert2Module.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

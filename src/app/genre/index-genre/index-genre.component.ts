@@ -1,6 +1,7 @@
 import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
+import { error } from 'console';
 import { GenreDTO } from 'src/app/Models/genre';
 import { GenreService } from 'src/app/Services/genre.service';
 
@@ -39,7 +40,16 @@ export class IndexGenreComponent implements OnInit {
   UpdatePagination(data: PageEvent) {
     this.ActualPage = data.pageIndex + 1;
     this.recordsToShow = data.pageSize;
-    this.LoadRecord(this.ActualPage,this.recordsToShow);
+    this.LoadRecord(this.ActualPage, this.recordsToShow);
+  }
+
+  deleteGenre(id: number) {
+    this.genreService.deleteGenreByID(id)
+      .subscribe(() => {
+        this.LoadRecord(this.ActualPage, this.recordsToShow)
+      },error =>{
+        console.error(error)
+      })
   }
 
 }

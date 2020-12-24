@@ -28,7 +28,7 @@
                 <th mat-header-cell *matHeaderCellDef> Actions</th>
                 <td mat-cell *matCellDef="let element">
                     <a routerLink="/Genre/Edit/{{element.id}}" mat-flat-button color="primary">Edit</a>
-                    <button mat-flat-button color="warn">Delete</button>
+                    <button mat-flat-button color="warn" [swal]="{title:'Confirmation',text:'Are you sure do you want to delete this Genre?', showCancelButton:true}" (confirm)="deleteGenre(element.id)">Delete</button>
                 </td>
             </ng-container>
 
