@@ -12,6 +12,9 @@ export class FormActorsComponent implements OnInit {
   @Input()
   model!: ActorDTO;
 
+  @Input()
+  frmErrors: string[]=[]
+
   @Output()
   submit: EventEmitter<ActorCreationDTO> = new EventEmitter<ActorCreationDTO>()
   constructor(
