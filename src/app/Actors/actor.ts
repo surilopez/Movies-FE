@@ -7,5 +7,6 @@ export interface ActorDTO{
 export interface ActorCreationDTO {
   Name: string;
   DateOfBirth: Date,
-  ActorImage: File
+  ActorImage: File,
+  Biography: string
 }

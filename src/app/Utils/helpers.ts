@@ -1,3 +1,4 @@
+import { getLocaleDateTimeFormat } from '@angular/common';
 import { rejects } from 'assert';
 import { resolve } from 'dns';
 
@@ -31,4 +32,20 @@ export function ParseErrorsAPI(response: any): string[] {
   }
 
   return result;
+}
+
+export function formatDate(date: Date) {
+  const format = new Intl.DateTimeFormat('en', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit'
+  })
+
+  const [
+    { value: month },,
+    { value: day },,
+    { value: year }
+  ] = format.formatToParts(date);
+
+  return `${month}/${day}/${year}`
 }
