@@ -31,7 +31,7 @@ export class IndexActorsComponent implements OnInit {
     this.actorsService.GetAllActors(page, recordsToShow).subscribe((response: HttpResponse<ActorDTO[]>) => {
 
       this.actorsDTO = response.body!;
-      console.log(response.headers.get("TotalRecords"))
+
       this.TotalRecords = response.headers.get("TotalRecords")!
     }, error => {
       console.error(error)

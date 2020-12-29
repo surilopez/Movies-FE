@@ -12,7 +12,7 @@ export class MarkDownInputComponent implements OnInit {
   placeholderTextAre: string = 'Text'
 
   @Input()
-  MarkDownContent = ''
+  MarkDownContent:any = ''
 
   @Output()
   TextAreaChange: EventEmitter<string> = new EventEmitter<string>()

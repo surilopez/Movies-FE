@@ -10,10 +10,10 @@ import { ActorCreationDTO, ActorDTO } from '../actor';
 export class FormActorsComponent implements OnInit {
 
   @Input()
-  model!: ActorDTO;
+  model?: ActorDTO;
 
   @Input()
-  frmErrors: string[]=[]
+  frmErrors: string[] = []
 
   @Output()
   submit: EventEmitter<ActorCreationDTO> = new EventEmitter<ActorCreationDTO>()
@@ -22,30 +22,41 @@ export class FormActorsComponent implements OnInit {
   ) { }
 
   formAddActor!: FormGroup
+  changeImage= false
   ngOnInit(): void {
     this.formAddActor = this.formbuilder.group({
-      Name: ['', {
+      name: ['', {
         validators: [Validators.required],
       }],
-      DateOfBirth: '',
-      ActorImage: '',
-      Biografy:''
+      dateOfBirth: '',
+      actorImage: '',
+      biography: ''
     })
-    if (this.model !== undefined) {
+
+    if (this.model != undefined) {
+      console.log(this.model)
       this.formAddActor.patchValue(this.model)
     }
 
   }
 
   uploadFile(file: File) {
+
+    this.changeImage = true;
+
     this.formAddActor.get('ActorImage')?.setValue(file);
   }
 
-  changeMarkDown(txt:string){
-    this.formAddActor.get('Biografy')?.setValue(txt);
+  changeMarkDown(txt: string) {
+    this.formAddActor.get('Biography')?.setValue(txt);
   }
 
   onSubmit() {
+
+    if (!this.changeImage) {
+      this.formAddActor.patchValue({ 'ActorImage': null })
+    }
+
     this.submit.emit(this.formAddActor.value)
   }
 

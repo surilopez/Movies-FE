@@ -22,9 +22,22 @@ export class ActorsService {
     return this.httpClient.get<ActorDTO[] | null>(this.apiUrl, { observe: 'response', params })
   }
 
-  public AddNewActor(actor: ActorCreationDTO) {
+  public getActorById(id: number): Observable<ActorDTO> {
+
+    return this.httpClient.get<ActorDTO>(`${this.apiUrl}/${id}`)
+  }
+
+  public EditActor(id: number, actor: ActorCreationDTO) {
     const formData = this.BuildFormData(actor);
-    return this.httpClient.post(this.apiUrl, formData)
+    return this.httpClient.put(`${this.apiUrl}/${id}`, formData)
+  }
+
+  public AddNewActor(actor: ActorCreationDTO) {
+
+    console.log(actor);
+    const formData = this.BuildFormData(actor);
+
+   return this.httpClient.post(this.apiUrl, formData)
   }
 
   public deleteActorByID(id:number){
@@ -33,16 +46,16 @@ export class ActorsService {
 
   private BuildFormData(actor: ActorCreationDTO): FormData {
     const formData = new FormData();
-    formData.append('Name', actor.Name)
-    if (actor.Biography) {
-      formData.append('Biography', actor.Biography)
+    formData.append('Name', actor.name)
+    if (actor.biography) {
+      formData.append('Biography', actor.biography)
     }
-    if (actor.DateOfBirth) {
-      formData.append('DateOfBirth', formatDate(actor.DateOfBirth))
+    if (actor.dateOfBirth) {
+      formData.append('DateOfBirth', formatDate(actor.dateOfBirth))
     }
 
-    if (actor.ActorImage) {
-      formData.append('Photo', actor.ActorImage)
+    if (actor.actorImage) {
+      formData.append('ActorImage', actor.actorImage)
     }
 
     return formData;

@@ -35,6 +35,7 @@ export function ParseErrorsAPI(response: any): string[] {
 }
 
 export function formatDate(date: Date) {
+  date = new Date(date)
   const format = new Intl.DateTimeFormat('en', {
     year: 'numeric',
     month: '2-digit',

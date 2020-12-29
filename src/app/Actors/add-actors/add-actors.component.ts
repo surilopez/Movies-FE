@@ -20,12 +20,13 @@ export class AddActorsComponent implements OnInit {
   }
 
   frmErrors: string[] = [];
+
   SaveChanges(actor: ActorCreationDTO) {
     this.actorsService.AddNewActor(actor)
       .subscribe(() => {
         this.router.navigate(['/Actors'])
-      },errors=>this.frmErrors= ParseErrorsAPI(errors))
-    console.log(actor)
+      }, errors => this.frmErrors = ParseErrorsAPI(errors))
+
   }
 
 }

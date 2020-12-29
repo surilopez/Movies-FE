@@ -3,17 +3,18 @@
 <form (submit)=" onSubmit()" [formGroup]="formAddActor">
     <mat-form-field appearance="outline">
         <mat-label>Name</mat-label>
-        <input formControlName="Name" matInput required/>
+        <input formControlName="name" matInput required/>
         <mat-error>Field Name is Required </mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline">
         <mat-label>Date Of Birth</mat-label>
-        <input formControlName="DateOfBirth" matInput [matDatepicker]="picker" />
+        <input formControlName="dateOfBirth" matInput [matDatepicker]="picker" />
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
-    <app-upload-images [UrlImage]="model?.ActorImage" (uploadFile)="uploadFile($event)"></app-upload-images>
-    <app-mark-down-input (TextAreaChange)="changeMarkDown($event)" [placeholderTextAre]="'Biografy'"></app-mark-down-input>
+    <app-upload-images [UrlImage]="model?.actorImage" (uploadFile)="uploadFile($event)"></app-upload-images>
+
+    <app-mark-down-input [MarkDownContent]="model?.biography" (TextAreaChange)="changeMarkDown($event)" [placeholderTextAre]="'Biography'"></app-mark-down-input>
     <div>
         <button mat-flat-button color="primary" [disabled]="formAddActor.invalid"> Save </button>
         <a mat-stroked-button routerLink="/Actors" color="warn">Cancel</a>
