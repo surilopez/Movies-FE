@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { TheaterService } from 'src/app/Services/theater.service';
+import { ParseErrorsAPI } from 'src/app/Utils/helpers';
 import { TheaterCreationDTO } from '../theater';
 
 @Component({
@@ -8,12 +11,26 @@ import { TheaterCreationDTO } from '../theater';
 })
 export class AddTheaterComponent implements OnInit {
 
-  constructor() { }
+  frmErrors: string[] = [];
 
-  ngOnInit(): void {
-  }
+  constructor(
+  private router: Router,
+  private theaterService: TheaterService
+) {
+
+}
+
+ngOnInit(): void {
+}
+
+
 
   SaveChanges(theater: TheaterCreationDTO) {
     console.log(theater)
+    this.theaterService.AddNewTheater(theater).subscribe(() => {
+      this.router.navigate(['/Theater']);
+    },(error)=>{
+      this.frmErrors = ParseErrorsAPI(error)
+    })
   }
 }

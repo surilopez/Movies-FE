@@ -11,6 +11,9 @@ import { Coordinates } from '../../Utils/maps/position'
 export class FormTheaterComponent implements OnInit {
 
   @Input()
+  frmErrors:string[] = [];
+
+  @Input()
   model?: TheaterCreationDTO
 
   @Output()
