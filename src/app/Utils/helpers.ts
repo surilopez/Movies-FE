@@ -40,7 +40,7 @@ export function formatDate(date: Date) {
     year: 'numeric',
     month: '2-digit',
     day: '2-digit'
-  })
+  });
 
   const [
     { value: month },,
@@ -48,5 +48,5 @@ export function formatDate(date: Date) {
     { value: year }
   ] = format.formatToParts(date);
 
-  return `${month}/${day}/${year}`
+  return `${month}/${day}/${year}`;
 }

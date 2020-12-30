@@ -10,13 +10,13 @@ import { ActorCreationDTO, ActorDTO } from '../actor';
 export class FormActorsComponent implements OnInit {
 
   @Input()
-  model?: ActorDTO;
+  model!: ActorDTO;
 
   @Input()
   frmErrors: string[] = []
 
   @Output()
-  submit: EventEmitter<ActorCreationDTO> = new EventEmitter<ActorCreationDTO>()
+  childSubmit: EventEmitter<ActorCreationDTO> = new EventEmitter<ActorCreationDTO>()
   constructor(
     private formbuilder: FormBuilder
   ) { }
@@ -29,7 +29,7 @@ export class FormActorsComponent implements OnInit {
         validators: [Validators.required],
       }],
       dateOfBirth: '',
-      actorImage: '',
+      photo: '',
       biography: ''
     })
 
@@ -43,21 +43,22 @@ export class FormActorsComponent implements OnInit {
   uploadFile(file: File) {
 
     this.changeImage = true;
+    console.log(this.changeImage);
 
-    this.formAddActor.get('ActorImage')?.setValue(file);
+    this.formAddActor.get('photo')?.setValue(file);
   }
 
   changeMarkDown(txt: string) {
-    this.formAddActor.get('Biography')?.setValue(txt);
+    this.formAddActor.get('biography')?.setValue(txt);
   }
 
   onSubmit() {
 
     if (!this.changeImage) {
-      this.formAddActor.patchValue({ 'ActorImage': null })
+      this.formAddActor.patchValue({ 'photo': null })
     }
 
-    this.submit.emit(this.formAddActor.value)
+    this.childSubmit.emit(this.formAddActor.value)
   }
 
 }

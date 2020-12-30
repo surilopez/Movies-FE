@@ -13,7 +13,7 @@ export class EditActorsComponent implements OnInit {
 
 
 
-  model?: ActorDTO
+  model!: ActorDTO;
 
   frmErrors: string[] = [];
 

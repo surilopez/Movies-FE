@@ -27,25 +27,24 @@ export class ActorsService {
     return this.httpClient.get<ActorDTO>(`${this.apiUrl}/${id}`)
   }
 
+  public AddNewActor(actor: ActorCreationDTO) {
+    let formData = this.BuildFormData(actor);
+   return this.httpClient.post(this.apiUrl,formData)
+  }
+
   public EditActor(id: number, actor: ActorCreationDTO) {
     const formData = this.BuildFormData(actor);
     return this.httpClient.put(`${this.apiUrl}/${id}`, formData)
   }
 
-  public AddNewActor(actor: ActorCreationDTO) {
 
-    console.log(actor);
-    const formData = this.BuildFormData(actor);
-
-   return this.httpClient.post(this.apiUrl, formData)
-  }
 
   public deleteActorByID(id:number){
     return this.httpClient.delete(`${this.apiUrl}/${id}`)
   }
 
   private BuildFormData(actor: ActorCreationDTO): FormData {
-    const formData = new FormData();
+    const formData:FormData = new FormData();
     formData.append('Name', actor.name)
     if (actor.biography) {
       formData.append('Biography', actor.biography)
@@ -54,8 +53,8 @@ export class ActorsService {
       formData.append('DateOfBirth', formatDate(actor.dateOfBirth))
     }
 
-    if (actor.actorImage) {
-      formData.append('ActorImage', actor.actorImage)
+    if (actor.photo) {
+      formData.append('Photo', actor.photo)
     }
 
     return formData;

@@ -12,7 +12,7 @@
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
-    <app-upload-images [UrlImage]="model?.actorImage" (uploadFile)="uploadFile($event)"></app-upload-images>
+    <app-upload-images [UrlImage]="model?.photo" (uploadFile)="uploadFile($event)"></app-upload-images>
 
     <app-mark-down-input [MarkDownContent]="model?.biography" (TextAreaChange)="changeMarkDown($event)" [placeholderTextAre]="'Biography'"></app-mark-down-input>
     <div>
