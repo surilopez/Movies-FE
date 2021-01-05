@@ -37,7 +37,7 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
 
-        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons [length]="TotalRecords" [pageSize]="recordsToShow" (page)="UpdatePagination($event)"></mat-paginator>
+        <mat-paginator class="mat-elevation-z8" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons [length]="TotalRecords" [pageSize]="recordsToShow" (page)="UpdatePagination($event)"></mat-paginator>
     </ng-container>
 
 </app-generic-list>
