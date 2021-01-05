@@ -24,6 +24,15 @@ export class TheaterService {
     return this.httpClient.get<TheaterDTO[] | null>(this.apiUrl, { observe: 'response', params })
   }
 
+  public getTheaterById(id: number): Observable<TheaterDTO> {
+
+    return this.httpClient.get<TheaterDTO>(`${this.apiUrl}/${id}`)
+  }
+
+  public editTheater(id: number, theater: TheaterCreationDTO) {
+    return this.httpClient.put(`${this.apiUrl}/${id}`, theater)
+  }
+
   public deleteTheaterByID(id:number){
     return this.httpClient.delete(`${this.apiUrl}/${id}`)
   }

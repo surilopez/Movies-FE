@@ -1,2 +1,3 @@
 <h2>Edit Theater</h2>
-<app-form-theater [model]="model" (SaveChanges)="SaveChanges($event)"></app-form-theater>
+<app-form-theater *ngIf="model" [frmErrors]="frmErrors" [model]="model" (SaveChanges)="SaveChanges($event)"></app-form-theater>
+<mat-spinner *ngIf="!model"></mat-spinner>

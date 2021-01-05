@@ -28,22 +28,23 @@ export class FormTheaterComponent implements OnInit {
   formTheaters!: FormGroup
   ngOnInit(): void {
     this.formTheaters = this.formBuilder.group({
-      Name: ['', {
+      name: ['', {
         validators: [Validators.required]
       }],
       Latitude: ['',
         {
           validators: [Validators.required]
         }],
-      Longitude: ['',
+     Longitude: ['',
         {
           validators: [Validators.required]
         }]
     })
 
     if (this.model !== undefined) {
+      console.log(this.model)
       this.formTheaters.patchValue(this.model)
-      this.InitPosition.push({Latitude:this.model.Latitude, Longitude:this.model.Longitude})
+      this.InitPosition.push({Latitude:this.model.latitude, Longitude:this.model.longitude})
     }
 
   }
@@ -53,6 +54,7 @@ export class FormTheaterComponent implements OnInit {
   }
 
   coordinateThetaer(coord: Coordinates) {
+    console.log(coord)
     this.formTheaters.patchValue(coord)
 
   }

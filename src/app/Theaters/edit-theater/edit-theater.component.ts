@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { TheaterService } from 'src/app/Services/theater.service';
+import { ParseErrorsAPI } from 'src/app/Utils/helpers';
 import { TheaterCreationDTO, TheaterDTO } from '../theater';
 
 @Component({
@@ -9,20 +11,37 @@ import { TheaterCreationDTO, TheaterDTO } from '../theater';
 })
 export class EditTheaterComponent implements OnInit {
 
-  model: TheaterDTO = {
-    Name: 'The Grand IMAX Winstom Salem',
-    Latitude: 36.17417482491187,
-    Longitude: -80.27356982231142
-  }
 
-  constructor(private activedRoute: ActivatedRoute) { }
+  model?: TheaterDTO = undefined
+  frmErrors: string[] = [];
+  constructor(
+    private activedRoute: ActivatedRoute,
+    private router: Router,
+    private theaterServices: TheaterService) { }
 
   ngOnInit(): void {
     this.activedRoute.params.subscribe(params => {
-      // alert(params.id)
+
+      this.theaterServices.getTheaterById(params.id)
+        .subscribe(theater => {
+
+          this.model = theater
+
+        }, (error) => {
+          console.log(error)
+          this.router.navigate(['/Theater'])
+        })
     })
   }
   SaveChanges(theater: TheaterCreationDTO) {
-    console.log(theater)
+    //Function for save Genre
+    if (this.model) {
+      this.theaterServices.editTheater(this.model.id, theater).subscribe(() => {
+
+        console.log(theater)
+        this.router.navigate(['/Theater']);
+      }, error => this.frmErrors = ParseErrorsAPI(error))
+    }
+
   }
 }
