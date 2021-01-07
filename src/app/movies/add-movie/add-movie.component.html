@@ -1,2 +1,4 @@
 <h2>Add Film</h2>
-<app-form-movie (NewMovieOnSubmit)="KeepChanges($event)"></app-form-movie>
+<app-form-movie *ngIf="NoSelectedTheaters" [NoSelectedGenres]="NoSelectedGenres" [NoSelectedTheaters]="NoSelectedTheaters" (NewMovieOnSubmit)="KeepChanges($event)"></app-form-movie>
+
+<mat-spinner *ngIf="!NoSelectedTheaters"></mat-spinner>

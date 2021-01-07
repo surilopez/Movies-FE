@@ -28,23 +28,14 @@ export class FormMovieComponent implements OnInit {
     private formBuilder: FormBuilder
   ) { }
   form!: FormGroup;
-  NoSelectedGenres: SelectorMultiple[] = [
-    { key: 1, value: "Comedy" },
-    { key: 2, value: "Adventure" },
-    { key: 3, value: "Romantic" },
-    { key: 4, value: "Dramas" },
-    { key: 5, value: "Action" },
-  ]
+
+  @Input()
+  NoSelectedGenres: SelectorMultiple[] = []
 
   SelectedGenres: SelectorMultiple[] = []
 
-  NoSelectedTheaters: SelectorMultiple[] = [
-    { key: 1, value: "Grand IMAX" },
-    { key: 2, value: "AMC Hanes 12" },
-    { key: 3, value: "Huber Theater" },
-    { key: 4, value: "Regal Greensboro Grande & RPX" },
-    { key: 5, value: "Regal Palladium & IMAX" },
-  ]
+  @Input()
+  NoSelectedTheaters: SelectorMultiple[] = []
 
   SelectedTheaters: SelectorMultiple[] = []
 
