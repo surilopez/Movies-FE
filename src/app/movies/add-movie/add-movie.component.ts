@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MovieCreationDTO } from 'src/app/Models/movies';
 import { SelectorMultiple } from 'src/app/Models/SelectorMultiple';
 import { MoviesService } from 'src/app/Services/movies.service';
+import { ParseErrorsAPI } from 'src/app/Utils/helpers';
 
 @Component({
   selector: 'app-add-movie',
@@ -11,7 +12,7 @@ import { MoviesService } from 'src/app/Services/movies.service';
 export class AddMovieComponent implements OnInit {
   NoSelectedGenres: SelectorMultiple[] = []
   NoSelectedTheaters: SelectorMultiple[] = []
-
+  frmErrors: string[] = []
   constructor(private moviesService: MoviesService) { }
 
   ngOnInit(): void {
@@ -30,6 +31,12 @@ export class AddMovieComponent implements OnInit {
   }
 
   KeepChanges(movie: MovieCreationDTO) {
-    console.log(movie)
+
+
+    this.moviesService.Add(movie).subscribe(() => {
+      console.log('The movie was added Successfully')
+    }, error => {
+      this.frmErrors = ParseErrorsAPI(error)
+    })
   }
 }

@@ -1,3 +1,4 @@
+import { ActorMovieDTO } from "../Actors/actor";
 import { TheaterDTO } from "../Theaters/theater";
 import { GenreDTO } from "./genre";
 
@@ -7,7 +8,11 @@ export interface MovieCreationDTO {
   onTheater: boolean,
   Trailer: string,
   ReleaseDate: Date,
-  Img: File
+  Img: File,
+  GenresId:number[],
+  TheatersId:number[],
+  Actors:ActorMovieDTO[],
+
 }
 export interface MovieDTO {
   Title: string,

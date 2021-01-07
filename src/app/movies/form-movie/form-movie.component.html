@@ -1,3 +1,4 @@
+<app-show-errors [frmErrors]="frmErrors"></app-show-errors>
 <form [formGroup]="form" (submit)="KeepChanges()">
 
     <mat-form-field appearance="outline">
@@ -39,7 +40,7 @@
     <app-multiple-selector [Selected]=" SelectedTheaters" [NoSelected]=" NoSelectedTheaters"></app-multiple-selector>
 
     <h4>Actors</h4>
-    <app-auto-complete-actors></app-auto-complete-actors>
+    <app-auto-complete-actors [selectedActors]="selectedActors"></app-auto-complete-actors>
     <div>
         <button mat-flat-button color="primary" [disabled]="form.invalid"> Save </button>
         <a mat-stroked-button routerLink="/" color="warn">Cancel</a>
