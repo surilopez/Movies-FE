@@ -15,12 +15,15 @@ export interface MovieCreationDTO {
 
 }
 export interface MovieDTO {
-  Title: string,
-  Info: string,
+  title: string,
+  info: string,
   onTheater: boolean,
-  Trailer: string,
-  ReleaseDate: Date,
-  Img: string
+  trailer: string,
+  releaseDate: Date,
+  img: string,
+  genresDTO: GenreDTO[],
+  movieActorsDTO:ActorMovieDTO[],
+  theaterDTO:TheaterDTO[]
 }
 
 export interface MoviesPostGet{

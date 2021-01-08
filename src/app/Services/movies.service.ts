@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { MovieCreationDTO, MoviesPostGet } from '../Models/movies';
+import { MovieCreationDTO, MovieDTO, MoviesPostGet } from '../Models/movies';
 import { formatDate } from '../Utils/helpers';
 
 @Injectable({
@@ -21,7 +21,12 @@ export class MoviesService {
     console.log(movie)
     const formData = this.BuildFormDate(movie);
     console.log(formData)
-    return this.httpClient.post(this.apiUrl,formData);
+    return this.httpClient.post(this.apiUrl, formData);
+  }
+
+  public GetByID(id: number): Observable<MovieDTO> {
+
+    return this.httpClient.get<MovieDTO>(`${this.apiUrl}/${id}`);
   }
 
   private BuildFormDate(movie: MovieCreationDTO): FormData {
@@ -38,7 +43,7 @@ export class MoviesService {
     if (movie.Img) {
       formData.append('Img', movie.Img)
     }
-console.log(JSON.stringify(movie.GenresId))
+    console.log(JSON.stringify(movie.GenresId))
     formData.append('GenresIDList', JSON.stringify(movie.GenresId))
     formData.append('TheatersIDList', JSON.stringify(movie.TheatersId))
     formData.append('ActorsList', JSON.stringify(movie.Actors))

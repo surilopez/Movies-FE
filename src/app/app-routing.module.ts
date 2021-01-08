@@ -13,6 +13,7 @@ import { EditTheaterComponent } from './Theaters/edit-theater/edit-theater.compo
 import { AddMovieComponent } from './movies/add-movie/add-movie.component';
 import { EditMovieComponent } from './movies/edit-movie/edit-movie.component';
 import { FilterMovieComponent } from './movies/filter-movie/filter-movie.component';
+import { MovieDetailsComponent } from './movies/movie-details/movie-details.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -29,7 +30,8 @@ const routes: Routes = [
   { path: 'Movie/Add', component: AddMovieComponent },
   { path: 'Movie/Search', component: FilterMovieComponent },
   { path: 'Movie/Edit/:id', component: EditMovieComponent },
-  { path: '**', redirectTo:'' }
+  { path: 'Movie/:id', component: MovieDetailsComponent },
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

@@ -29,9 +29,9 @@
 
 
     <h4>Select Image</h4>
-    <app-upload-images [UrlImage]="model?.Img" (uploadFile)="uploadFile($event)"></app-upload-images>
+    <app-upload-images [UrlImage]="model?.img" (uploadFile)="uploadFile($event)"></app-upload-images>
     <h4>Information:</h4>
-    <app-mark-down-input [MarkDownContent]="model.Info" [placeholderTextAre]="'Information'" (TextAreaChange)="changeMarkDown($event)"></app-mark-down-input>
+    <app-mark-down-input [MarkDownContent]="model.info" [placeholderTextAre]="'Information'" (TextAreaChange)="changeMarkDown($event)"></app-mark-down-input>
 
     <h4>Genres</h4>
     <app-multiple-selector [Selected]=" SelectedGenres" [NoSelected]=" NoSelectedGenres"></app-multiple-selector>

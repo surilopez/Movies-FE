@@ -44,6 +44,7 @@ import { MultipleSelectorComponent } from './Utils/multiple-selector/multiple-se
 import { AutoCompleteActorsComponent } from './Actors/auto-complete-actors/auto-complete-actors.component';
 import { ShowErrorsComponent } from './Utils/show-errors/show-errors.component';
 import { GenericListComponent } from './Utils/generic-list/generic-list.component';
+import { MovieDetailsComponent } from './movies/movie-details/movie-details.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { GenericListComponent } from './Utils/generic-list/generic-list.componen
     AutoCompleteActorsComponent,
     ShowErrorsComponent,
     GenericListComponent,
+    MovieDetailsComponent,
 
   ],
   imports: [

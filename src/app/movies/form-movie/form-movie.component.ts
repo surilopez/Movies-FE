@@ -13,12 +13,15 @@ export class FormMovieComponent implements OnInit {
 
   @Input()
   model: MovieDTO = {
-    Title: '',
-    Trailer: '',
-    Info: '',
+    title: '',
+    trailer: '',
+    info: '',
     onTheater: false,
-    ReleaseDate: new Date(),
-    Img: ''
+    releaseDate: new Date(),
+    img: '',
+    genresDTO: [],
+    movieActorsDTO: [],
+    theaterDTO: []
 
   };
 
