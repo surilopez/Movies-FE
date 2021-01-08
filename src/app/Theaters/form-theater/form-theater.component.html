@@ -7,11 +7,11 @@
     </mat-form-field>
 
     <h4>Select the Theater on the Map</h4>
-    <div>
+    <div style="position: relative;">
         <app-maps (coordinate)="coordinateThetaer($event)" [InitPosition]="InitPosition"></app-maps>
     </div>
 
-    <div>
+    <div style="margin-top: 450px;">
         <button mat-flat-button color="primary" [disabled]="formTheaters.invalid"> Save </button>
         <a mat-stroked-button routerLink="/Theater" color="warn">Cancel</a>
     </div>

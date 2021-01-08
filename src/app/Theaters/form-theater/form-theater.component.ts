@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TheaterCreationDTO } from '../theater';
-import { Coordinates } from '../../Utils/maps/position'
+import { Coordinates, CoordinatesWithMesage } from '../../Utils/maps/position'
 
 @Component({
   selector: 'app-form-theater',
@@ -23,7 +23,7 @@ export class FormTheaterComponent implements OnInit {
     private formBuilder: FormBuilder
   ) { }
 
-  InitPosition: Coordinates[] = [];
+  InitPosition: CoordinatesWithMesage[] = [];
 
   formTheaters!: FormGroup
   ngOnInit(): void {
@@ -44,7 +44,7 @@ export class FormTheaterComponent implements OnInit {
     if (this.model !== undefined) {
       console.log(this.model)
       this.formTheaters.patchValue(this.model)
-      this.InitPosition.push({Latitude:this.model.latitude, Longitude:this.model.longitude})
+      this.InitPosition.push({Latitude:this.model.latitude, Longitude:this.model.longitude, message:""})
     }
 
   }

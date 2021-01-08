@@ -30,6 +30,7 @@ export class MovieDetailsComponent implements OnInit {
         this.movieDTO = movie;
         this.releaseDate = new Date(movie.releaseDate)
         this.trailerURL = this.GenerateURLYoutubeEmbed(movie.trailer)
+        console.log(this.trailerURL)
         this.locations = movie.theaterDTO.map(theater => {
           return {
             Longitude: theater.longitude,
@@ -46,14 +47,14 @@ export class MovieDetailsComponent implements OnInit {
     if (!url) {
       return '';
     }
-console.log(url)
+
     var video_id = url.split('v=')[1];
-    console.log(video_id)
     var ampersandPosition = video_id.indexOf('&');
     if (ampersandPosition !== -1) {
       video_id = video_id.substring(0, ampersandPosition)
     }
-    return this.sanitizer.bypassSecurityTrustUrl(`https://www.youtube.com/embed/${video_id}`);
+    return this.sanitizer
+    .bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${video_id}`);
   }
 
 }

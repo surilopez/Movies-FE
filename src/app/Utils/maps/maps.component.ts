@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { tileLayer, latLng, LeafletMouseEvent, Marker, marker } from 'leaflet';
-import { Coordinates } from '../maps/position'
+import { Coordinates, CoordinatesWithMesage } from '../maps/position'
 
 @Component({
   selector: 'app-maps',
@@ -10,7 +10,9 @@ import { Coordinates } from '../maps/position'
 export class MapsComponent implements OnInit {
 
   @Input()
-  InitPosition: Coordinates[] = [];
+  InitPosition: CoordinatesWithMesage[] = [];
+  @Input()
+  readOnly: boolean = false
 
   @Output()
   coordinate: EventEmitter<Coordinates> = new EventEmitter<Coordinates>()
@@ -20,7 +22,13 @@ export class MapsComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.InitPosition)
-    this.markers = this.InitPosition.map(value=>marker([value.Latitude,value.Longitude]));
+    this.markers = this.InitPosition.map((value) => {
+      let m = marker([value.Latitude, value.Longitude])
+      if (value.message) {
+        m.bindPopup(value.message, { autoClose: false, autoPan: false })
+      }
+      return m
+    });
 
 
   }
@@ -36,9 +44,15 @@ export class MapsComponent implements OnInit {
   HandlingClick(event: LeafletMouseEvent) {
     const lat = event.latlng.lat;
     const lon = event.latlng.lng;
-    this.markers = [];
-    this.markers.push(marker([lat, lon]))
-    console.log(this.markers)
-    this.coordinate.emit({ Latitude: lat, Longitude: lon })
+
+    if (!this.readOnly) {
+      const lat = event.latlng.lat;
+      const lon = event.latlng.lng;
+      this.markers = [];
+      this.markers.push(marker([lat, lon]))
+
+      this.coordinate.emit({ Latitude: lat, Longitude: lon })
+    }
+
   }
 }
