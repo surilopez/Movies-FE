@@ -9,8 +9,8 @@ import { MoviesService } from '../Services/movies.service';
 })
 export class LandingPageComponent implements OnInit {
 
-  onTheaters: MovieDTO[] = []
-  commingSoom: MovieDTO[] = []
+  onTheaters?: MovieDTO[]
+  commingSoom?: MovieDTO[]
 
   constructor(
     private moviesService: MoviesService

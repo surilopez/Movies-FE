@@ -1,2 +1,4 @@
 <h2>Edit Film</h2>
-<app-form-movie [model]="model" (NewMovieOnSubmit)="KeepChanges($event)"></app-form-movie>
+<app-form-movie [NoSelectedGenres]="noSelectedGenresDTO" [SelectedGenres]="selectedGenresDTO" [NoSelectedTheaters]="noSelectedTheaterDTO" [SelectedTheaters]="selectedTheaterDTO" [selectedActors]="selectedActors" *ngIf="model" [model]="model" (NewMovieOnSubmit)="KeepChanges($event)"></app-form-movie>
+
+<mat-spinner *ngIf="!model"></mat-spinner>

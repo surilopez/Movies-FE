@@ -26,11 +26,11 @@ export class MovieDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.activateRoute.params.subscribe(params => {
       this.moviesService.GetByID(params.id).subscribe(movie => {
-        console.log(movie)
+
         this.movieDTO = movie;
         this.releaseDate = new Date(movie.releaseDate)
         this.trailerURL = this.GenerateURLYoutubeEmbed(movie.trailer)
-        console.log(this.trailerURL)
+
         this.locations = movie.theaterDTO.map(theater => {
           return {
             Longitude: theater.longitude,

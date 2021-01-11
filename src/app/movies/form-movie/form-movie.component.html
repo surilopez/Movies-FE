@@ -3,7 +3,7 @@
 
     <mat-form-field appearance="outline">
         <mat-label>Title</mat-label>
-        <input formControlName="Title" matInput required/>
+        <input formControlName="title" matInput required/>
         <mat-error>
             The field Name is required
         </mat-error>
@@ -15,14 +15,14 @@
 
     <mat-form-field appearance="outline">
         <mat-label>Trailer</mat-label>
-        <input formControlName="Trailer" matInput />
+        <input formControlName="trailer" matInput />
     </mat-form-field>
 
 
 
     <mat-form-field appearance="outline">
         <mat-label>Release Date</mat-label>
-        <input formControlName="ReleaseDate" matInput [matDatepicker]="ReleaseDatePicker" matInput />
+        <input formControlName="releaseDate" matInput [matDatepicker]="ReleaseDatePicker" matInput />
         <mat-datepicker-toggle matSuffix [for]="ReleaseDatePicker"></mat-datepicker-toggle>
         <mat-datepicker #ReleaseDatePicker></mat-datepicker>
     </mat-form-field>
@@ -31,7 +31,7 @@
     <h4>Select Image</h4>
     <app-upload-images [UrlImage]="model?.img" (uploadFile)="uploadFile($event)"></app-upload-images>
     <h4>Information:</h4>
-    <app-mark-down-input [MarkDownContent]="model.info" [placeholderTextAre]="'Information'" (TextAreaChange)="changeMarkDown($event)"></app-mark-down-input>
+    <app-mark-down-input [MarkDownContent]="model?.info" [placeholderTextAre]="'Information'" (TextAreaChange)="changeMarkDown($event)"></app-mark-down-input>
 
     <h4>Genres</h4>
     <app-multiple-selector [Selected]=" SelectedGenres" [NoSelected]=" NoSelectedGenres"></app-multiple-selector>

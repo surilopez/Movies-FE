@@ -3,11 +3,11 @@ import { TheaterDTO } from "../Theaters/theater";
 import { GenreDTO } from "./genre";
 
 export interface MovieCreationDTO {
-  Title: string,
-  Info: string,
+  title: string,
+  info: string,
   onTheater: boolean,
-  Trailer: string,
-  ReleaseDate: Date,
+  trailer: string,
+  releaseDate: Date,
   Img: File,
   GenresId:number[],
   TheatersId:number[],
@@ -30,6 +30,17 @@ export interface MovieDTO {
 export interface MoviesPostGet{
   genres: GenreDTO[];
   theaters: TheaterDTO[];
+}
+
+export interface MoviesPutGet{
+
+  movie: MovieDTO,
+  selectedGenresDTO: GenreDTO[],
+  noselectedGenresDTO: GenreDTO[],
+  movieActorsDTO: ActorMovieDTO[],
+  selectedTheaterDTO: TheaterDTO[],
+  noSelectedTheaterDTO: TheaterDTO[]
+
 }
 
 

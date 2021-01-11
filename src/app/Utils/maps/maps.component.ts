@@ -21,7 +21,7 @@ export class MapsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.InitPosition)
+
     this.markers = this.InitPosition.map((value) => {
       let m = marker([value.Latitude, value.Longitude])
       if (value.message) {

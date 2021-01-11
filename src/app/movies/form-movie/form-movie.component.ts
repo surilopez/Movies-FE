@@ -12,19 +12,7 @@ import { SelectorMultiple } from 'src/app/Models/SelectorMultiple';
 export class FormMovieComponent implements OnInit {
 
   @Input()
-  model: MovieDTO = {
-    id:0,
-    title: '',
-    trailer: '',
-    info: '',
-    onTheater: false,
-    releaseDate: new Date(),
-    img: '',
-    genresDTO: [],
-    movieActorsDTO: [],
-    theaterDTO: []
-
-  };
+  model?: MovieDTO
 
   @Input()
   frmErrors: string[] = []
@@ -39,27 +27,29 @@ export class FormMovieComponent implements OnInit {
 
   @Input()
   NoSelectedGenres: SelectorMultiple[] = []
-
+  @Input()
   SelectedGenres: SelectorMultiple[] = []
 
   @Input()
   NoSelectedTheaters: SelectorMultiple[] = []
-
+  @Input()
   SelectedTheaters: SelectorMultiple[] = []
 
   @Input()
   selectedActors: ActorMovieDTO[] = [];
 
+  imgUpated = false;
+
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      Title: [
+      title: [
         '',
         { validators: [Validators.required] }
       ],
-      Info: '',
+      info: '',
       onTheater: false,
-      Trailer: '',
-      ReleaseDate: '',
+      trailer: '',
+      releaseDate: '',
       Img: '',
       GenresId: '',
       TheatersId: '',
@@ -67,6 +57,7 @@ export class FormMovieComponent implements OnInit {
     })
 
     if (this.model != undefined) {
+
       this.form.patchValue(this.model)
     }
   }
@@ -83,16 +74,21 @@ export class FormMovieComponent implements OnInit {
     });
 
     this.form.get('Actors')?.setValue(actors);
+    if (!this.imgUpated) {
+      this.form.patchValue({ 'Img': null });
+    }
+
 
     this.NewMovieOnSubmit.emit(this.form.value)
   }
 
   uploadFile(file: File) {
     this.form.get('Img')?.setValue(file);
+    this.imgUpated = true;
   }
 
   changeMarkDown(txt: string) {
-    this.form.get('Info')?.setValue(txt);
+    this.form.get('info')?.setValue(txt);
   }
 
 }

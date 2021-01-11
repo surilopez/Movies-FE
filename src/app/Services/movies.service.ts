@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { LandingPageDTO, MovieCreationDTO, MovieDTO, MoviesPostGet } from '../Models/movies';
+import { LandingPageDTO, MovieCreationDTO, MovieDTO, MoviesPostGet, MoviesPutGet } from '../Models/movies';
 import { formatDate } from '../Utils/helpers';
 
 @Injectable({
@@ -21,11 +21,20 @@ export class MoviesService {
     return this.httpClient.get<MoviesPostGet>(`${this.apiUrl}/postget`)
   }
 
+  public putGet(id: number): Observable<MoviesPutGet> {
+
+    return this.httpClient.get<MoviesPutGet>(`${this.apiUrl}/putget?id=${id}`)
+  }
+
   public Add(movie: MovieCreationDTO) {
-    console.log(movie)
-    const formData = this.BuildFormDate(movie);
-    console.log(formData)
+    const formData = this.BuildFormData(movie);
     return this.httpClient.post(this.apiUrl, formData);
+  }
+
+  public Edit(id: number, movie: MovieCreationDTO) {
+
+    const formData = this.BuildFormData(movie);
+    return this.httpClient.put(`${this.apiUrl}/${id}`, formData);
   }
 
   public GetByID(id: number): Observable<MovieDTO> {
@@ -33,21 +42,22 @@ export class MoviesService {
     return this.httpClient.get<MovieDTO>(`${this.apiUrl}/${id}`);
   }
 
-  private BuildFormDate(movie: MovieCreationDTO): FormData {
+  private BuildFormData(movie: MovieCreationDTO): FormData {
     const formData = new FormData();
 
-    formData.append('Title', movie.Title)
-    formData.append('Info', movie.Info)
-    formData.append('Trailer', movie.Trailer)
+    formData.append('Title', movie.title)
+    console.log(movie.info)
+    formData.append('Info', movie.info)
+    formData.append('Trailer', movie.trailer)
     formData.append('onTheater', String(movie.onTheater))
-    if (movie.ReleaseDate) {
-      formData.append('ReleaseDate', formatDate(movie.ReleaseDate))
+    if (movie.releaseDate) {
+      formData.append('ReleaseDate', formatDate(movie.releaseDate))
     }
 
     if (movie.Img) {
       formData.append('Img', movie.Img)
     }
-    console.log(JSON.stringify(movie.GenresId))
+
     formData.append('GenresIDList', JSON.stringify(movie.GenresId))
     formData.append('TheatersIDList', JSON.stringify(movie.TheatersId))
     formData.append('ActorsList', JSON.stringify(movie.Actors))

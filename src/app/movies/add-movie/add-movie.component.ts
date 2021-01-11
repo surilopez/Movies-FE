@@ -31,8 +31,6 @@ export class AddMovieComponent implements OnInit {
   }
 
   KeepChanges(movie: MovieCreationDTO) {
-
-
     this.moviesService.Add(movie).subscribe(() => {
       console.log('The movie was added Successfully')
     }, error => {
