@@ -23,6 +23,11 @@ export class GenreService {
     return this.httpClient.get<GenreDTO[] | null>(this.apiUrl, { observe: 'response', params })
   }
 
+  public GetAll(): Observable<any> {
+
+    return this.httpClient.get<GenreDTO[] | null>(`${this.apiUrl}/allGenres`)
+  }
+
   public getGenreById(id: number): Observable<GenreDTO> {
 
     return this.httpClient.get<GenreDTO>(`${this.apiUrl}/${id}`)

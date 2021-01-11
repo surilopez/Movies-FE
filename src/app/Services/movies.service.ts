@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -26,9 +26,15 @@ export class MoviesService {
     return this.httpClient.get<MoviesPutGet>(`${this.apiUrl}/putget?id=${id}`)
   }
 
-  public Add(movie: MovieCreationDTO) {
+  public filter(values: any): Observable<any> {
+
+    const params = new HttpParams({ fromObject: values });
+    return this.httpClient.get<MovieDTO[]>(`${this.apiUrl}/Filters`, { params, observe: 'response' });
+  }
+
+  public Add(movie: MovieCreationDTO): Observable<number> {
     const formData = this.BuildFormData(movie);
-    return this.httpClient.post(this.apiUrl, formData);
+    return this.httpClient.post<number>(this.apiUrl, formData);
   }
 
   public Edit(id: number, movie: MovieCreationDTO) {

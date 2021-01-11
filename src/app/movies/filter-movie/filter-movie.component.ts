@@ -3,6 +3,10 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Location } from '@angular/common'
 import { ActivatedRoute } from '@angular/router';
 import { MovieDTO } from 'src/app/Models/movies';
+import { GenreDTO } from 'src/app/Models/genre';
+import { GenreService } from 'src/app/Services/genre.service';
+import { MoviesService } from 'src/app/Services/movies.service';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-filter-movie',
@@ -11,24 +15,22 @@ import { MovieDTO } from 'src/app/Models/movies';
 })
 export class FilterMovieComponent implements OnInit {
 
-  Movies: MovieDTO[] = [
-  ]
+
   constructor(
     private formbuilder: FormBuilder,
     private location: Location,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private genreService: GenreService,
+    private moviesServices: MoviesService
   ) { }
 
   SearchMovieForm!: FormGroup
-  Genres = [
-    { id: 0, Name: "All Genres" },
-    { id: 1, Name: "Comedy" },
-    { id: 2, Name: "Adventure" },
-    { id: 3, Name: "Romantic" },
-    { id: 4, Name: "Dramas" },
-    { id: 5, Name: "Action" },
-  ]
+  Genres: GenreDTO[] = []
+  Movies: MovieDTO[]=[]
 
+  actualPage = 1;
+  recordsToshow = 10;
+  TotalRecords: number = 0;
 
   InitForm = {
     Title: '',
@@ -36,81 +38,83 @@ export class FilterMovieComponent implements OnInit {
     CommingSoon: false,
     onTheaters: false
   }
-  allMovies = this.Movies
+
 
   ngOnInit(): void {
-    // this.SearchMovieForm = this.formbuilder.group(this.InitForm)
-    // this.filterByURLValues()
-    // this.FilterMovies(this.SearchMovieForm.value)
-    // this.SearchMovieForm.valueChanges.subscribe(values => {
-    //   this.Movies = this.allMovies;
-    //   this.FilterMovies(values)
-    //   this.UpdateUrlByParamFilter();
-    // })
+    this.genreService.GetAll().subscribe(genres => {
+      this.Genres = genres
+
+      this.SearchMovieForm = this.formbuilder.group(this.InitForm)
+      this.filterByURLValues()
+      this.FilterMovies(this.SearchMovieForm.value)
+      this.SearchMovieForm.valueChanges.subscribe(values => {
+
+        this.FilterMovies(values)
+        this.UpdateUrlByParamFilter();
+      })
+
+    })
 
   }
 
 
-  // FilterMovies(values: any) {
-  //   if (values.Title) {
-  //     this.Movies = this.Movies.filter(movie => movie.Title.indexOf(values.Title) !== -1)
-  //   }
+  FilterMovies(values: any) {
+    values.page = this.actualPage
+    values.recordsToShow=this.recordsToshow
+    this.moviesServices.filter(values).subscribe(response => {
+      this.Movies = response.body
+      this.filterByURLValues();
+    })
+  }
 
-  //   if (values.GenreID !== 0) {
-  //     this.Movies = this.Movies.filter(movie => movie.GenreID.indexOf(values.GenreID) !== -1)
-  //   }
+  private filterByURLValues() {
+    this.activatedRoute.queryParams.subscribe((param) => {
+      var obj: any = {}
+      if (param.Title) {
+        obj.Title = param.Title
+      }
+      if (param.GenreID) {
+        obj.GenreID = Number(param.GenreID)
+      }
+      if (param.CommingSoon) {
+        obj.CommingSoon = param.CommingSoon
+      }
+      if (param.CommingSoon) {
+        obj.onTheaters = param.onTheaters
+      }
+      console.log(obj)
+      this.SearchMovieForm.patchValue(obj)
+    })
+  }
 
-  //   if (values.CommingSoon) {
-  //     this.Movies = this.Movies.filter(movie => movie.CommingSoon)
-  //   }
-  //   if (values.onTheaters) {
-  //     this.Movies = this.Movies.filter(movie => movie.onTheaters)
-  //   }
-
-  // }
-
-  // private filterByURLValues() {
-  //   this.activatedRoute.queryParams.subscribe((param) => {
-  //     var obj: any = {}
-  //     if (param.Title) {
-  //       obj.Title = param.Title
-  //     }
-  //     if (param.GenreID) {
-  //       obj.GenreID = Number(param.GenreID)
-  //     }
-  //     if (param.CommingSoon) {
-  //       obj.CommingSoon = param.CommingSoon
-  //     }
-  //     if (param.CommingSoon) {
-  //       obj.onTheaters = param.onTheaters
-  //     }
-  //     console.log(obj)
-  //     this.SearchMovieForm.patchValue(obj)
-  //   })
-  // }
-
-  // private UpdateUrlByParamFilter() {
-  //   var queryStrings = [];
-  //   var formValues = this.SearchMovieForm.value;
-  //   if (formValues.Title) {
-  //     queryStrings.push(`Title=${formValues.Title}`)
-  //   }
-  //   if (formValues.GenreID) {
-  //     queryStrings.push(`GenreID=${formValues.GenreID}`)
-  //   }
-  //   if (formValues.CommingSoon) {
-  //     queryStrings.push(`CommingSoon=${formValues.CommingSoon}`)
-  //   }
-  //   if (formValues.onTheaters) {
-  //     queryStrings.push(`onTheaters=${formValues.onTheaters}`)
-  //   }
-  //   this.location.replaceState('Movie/Search', queryStrings.join('&'))
-  // }
+  private UpdateUrlByParamFilter() {
+    var queryStrings = [];
+    var formValues = this.SearchMovieForm.value;
+    if (formValues.Title) {
+      queryStrings.push(`Title=${formValues.Title}`)
+    }
+    if (formValues.GenreID) {
+      queryStrings.push(`GenreID=${formValues.GenreID}`)
+    }
+    if (formValues.CommingSoon) {
+      queryStrings.push(`CommingSoon=${formValues.CommingSoon}`)
+    }
+    if (formValues.onTheaters) {
+      queryStrings.push(`onTheaters=${formValues.onTheaters}`)
+    }
+    this.location.replaceState('Movie/Search', queryStrings.join('&'))
+  }
 
 
 
   CleanFilters() {
-    // this.SearchMovieForm.patchValue(this.InitForm)
-    // this.Movies = this.allMovies;
+    this.SearchMovieForm.patchValue(this.InitForm)
+
+  }
+
+  UpdatePagination(data:PageEvent){
+    this.actualPage = data.pageIndex+1;
+    this.recordsToshow = data.pageSize
+    this.FilterMovies(this.SearchMovieForm.value)
   }
 }

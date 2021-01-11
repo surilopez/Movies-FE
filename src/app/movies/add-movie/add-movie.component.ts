@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MovieCreationDTO } from 'src/app/Models/movies';
 import { SelectorMultiple } from 'src/app/Models/SelectorMultiple';
 import { MoviesService } from 'src/app/Services/movies.service';
@@ -13,7 +14,10 @@ export class AddMovieComponent implements OnInit {
   NoSelectedGenres: SelectorMultiple[] = []
   NoSelectedTheaters: SelectorMultiple[] = []
   frmErrors: string[] = []
-  constructor(private moviesService: MoviesService) { }
+  constructor(
+    private moviesService: MoviesService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.moviesService.postGet().subscribe(
@@ -31,8 +35,8 @@ export class AddMovieComponent implements OnInit {
   }
 
   KeepChanges(movie: MovieCreationDTO) {
-    this.moviesService.Add(movie).subscribe(() => {
-      console.log('The movie was added Successfully')
+    this.moviesService.Add(movie).subscribe((id: number) => {
+      this.router.navigate(['/Movie/' + id])
     }, error => {
       this.frmErrors = ParseErrorsAPI(error)
     })
