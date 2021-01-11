@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { MovieCreationDTO, MovieDTO, MoviesPostGet } from '../Models/movies';
+import { LandingPageDTO, MovieCreationDTO, MovieDTO, MoviesPostGet } from '../Models/movies';
 import { formatDate } from '../Utils/helpers';
 
 @Injectable({
@@ -12,6 +12,10 @@ export class MoviesService {
   private apiUrl = environment.apiUrl + 'Movies'
 
   constructor(private httpClient: HttpClient) { }
+
+  public GetLandingPage(): Observable<LandingPageDTO> {
+    return this.httpClient.get<LandingPageDTO>(this.apiUrl)
+  }
 
   public postGet(): Observable<MoviesPostGet> {
     return this.httpClient.get<MoviesPostGet>(`${this.apiUrl}/postget`)

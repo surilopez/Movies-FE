@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
+import { MovieDTO } from 'src/app/Models/movies';
 
 @Component({
   selector: 'app-list-movies',
@@ -10,13 +11,13 @@ export class ListMoviesComponent implements OnInit {
   constructor() { }
 
   @Input()
-  MoviesOnTheaters: any;
+  Movies: MovieDTO[] = [];
 
   ngOnInit(): void {
 
   }
 
-  Remove(x: Number):void{
+  Remove(x: Number): void {
 
   }
 

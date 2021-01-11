@@ -10,6 +10,7 @@ import { MovieCreationDTO, MovieDTO } from 'src/app/Models/movies';
 export class EditMovieComponent implements OnInit {
 
   model: MovieDTO = {
+    id:0,
     title: 'The Christmas Chronicles 2',
     trailer: 'https://www.youtube.com/watch?v=HVzBwSOcBaI',
     info: 'Kate Pierce, now a cynical teen, is unexpectedly reunited with Santa Claus when a mysterious troublemaker threatens to cancel Christmas - forever.',
