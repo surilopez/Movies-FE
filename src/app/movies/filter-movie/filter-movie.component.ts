@@ -26,7 +26,7 @@ export class FilterMovieComponent implements OnInit {
 
   SearchMovieForm!: FormGroup
   Genres: GenreDTO[] = []
-  Movies: MovieDTO[]=[]
+  Movies: MovieDTO[] = []
 
   actualPage = 1;
   recordsToshow = 10;
@@ -34,8 +34,8 @@ export class FilterMovieComponent implements OnInit {
 
   InitForm = {
     Title: '',
-    GenreID: 0,
-    CommingSoon: false,
+    genreID: 0,
+    commingSoon: false,
     onTheaters: false
   }
 
@@ -43,47 +43,59 @@ export class FilterMovieComponent implements OnInit {
   ngOnInit(): void {
     this.genreService.GetAll().subscribe(genres => {
       this.Genres = genres
-
-      this.SearchMovieForm = this.formbuilder.group(this.InitForm)
-      this.filterByURLValues()
-      this.FilterMovies(this.SearchMovieForm.value)
-      this.SearchMovieForm.valueChanges.subscribe(values => {
-
-        this.FilterMovies(values)
-        this.UpdateUrlByParamFilter();
-      })
-
+      console.log(this.Genres)
     })
+    this.SearchMovieForm = this.formbuilder.group(this.InitForm)
+    this.FilterMovies(this.SearchMovieForm.value)
+    this.filterByURLValues()
+    this.SearchMovieForm.valueChanges.subscribe(values => {
+     this.FilterMovies(values)
+      this.UpdateUrlByParamFilter();
+    })
+
 
   }
 
 
   FilterMovies(values: any) {
+    console.log(values)
     values.page = this.actualPage
-    values.recordsToShow=this.recordsToshow
+    values.recordsToShow = this.recordsToshow
     this.moviesServices.filter(values).subscribe(response => {
       this.Movies = response.body
-      this.filterByURLValues();
+      this.UpdateUrlByParamFilter();
+
+      this.TotalRecords = response.body.length
     })
+
   }
 
   private filterByURLValues() {
     this.activatedRoute.queryParams.subscribe((param) => {
       var obj: any = {}
+
+      console.log(param)
       if (param.Title) {
         obj.Title = param.Title
+
       }
-      if (param.GenreID) {
-        obj.GenreID = Number(param.GenreID)
+      if (param.genreID) {
+        obj.genreID = Number(param.genreID)
+
       }
-      if (param.CommingSoon) {
-        obj.CommingSoon = param.CommingSoon
+      if (param.commingSoon) {
+        obj.commingSoon = param.commingSoon
+
       }
-      if (param.CommingSoon) {
+      if (param.onTheaters) {
         obj.onTheaters = param.onTheaters
+
       }
       console.log(obj)
+
       this.SearchMovieForm.patchValue(obj)
+
+
     })
   }
 
@@ -93,11 +105,11 @@ export class FilterMovieComponent implements OnInit {
     if (formValues.Title) {
       queryStrings.push(`Title=${formValues.Title}`)
     }
-    if (formValues.GenreID) {
-      queryStrings.push(`GenreID=${formValues.GenreID}`)
+    if (formValues.genreID) {
+      queryStrings.push(`genreID=${formValues.genreID}`)
     }
-    if (formValues.CommingSoon) {
-      queryStrings.push(`CommingSoon=${formValues.CommingSoon}`)
+    if (formValues.commingSoon) {
+      queryStrings.push(`commingSoon=${formValues.commingSoon}`)
     }
     if (formValues.onTheaters) {
       queryStrings.push(`onTheaters=${formValues.onTheaters}`)
@@ -112,8 +124,8 @@ export class FilterMovieComponent implements OnInit {
 
   }
 
-  UpdatePagination(data:PageEvent){
-    this.actualPage = data.pageIndex+1;
+  UpdatePagination(data: PageEvent) {
+    this.actualPage = data.pageIndex + 1;
     this.recordsToshow = data.pageSize
     this.FilterMovies(this.SearchMovieForm.value)
   }

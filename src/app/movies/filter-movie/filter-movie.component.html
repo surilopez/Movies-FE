@@ -1,6 +1,6 @@
 <h2>Search Movie</h2>
 <mat-spinner *ngIf="!Movies"></mat-spinner>
-<!--
+
 <form [formGroup]="SearchMovieForm" *ngIf="Movies">
     <mat-form-field appearance="outline">
         <mat-label>Title</mat-label>
@@ -8,13 +8,14 @@
     </mat-form-field>
     <mat-form-field appearance="outline">
         <mat-label>Genre</mat-label>
-        <mat-select formControlName="GenreID">
+        <mat-select formControlName="genreID">
+            <mat-option [value]="0">--Select Genre--</mat-option>
             <mat-option *ngFor="let item of Genres" [value]="item.id">{{item.name}}</mat-option>
         </mat-select>
     </mat-form-field>
 
     <div>
-        <mat-checkbox formControlName="CommingSoon"> Comming Soon </mat-checkbox>
+        <mat-checkbox formControlName="commingSoon"> Comming Soon </mat-checkbox>
     </div>
 
     <div>
@@ -25,6 +26,6 @@
         <button mat-flat-button (click)="CleanFilters()" color="warn">Clean</button>
     </div>
 
-</form> -->
+</form>
 <app-list-movies [Movies]="Movies"></app-list-movies>
 <mat-paginator [length]="TotalRecords" [pageSize]="recordsToshow" [pageSizeOptions]="[5,10,20]" (page)="UpdatePagination($event)"></mat-paginator>
