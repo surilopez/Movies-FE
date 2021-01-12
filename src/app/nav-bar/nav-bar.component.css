@@ -11,3 +11,7 @@
 .mat-stroked-button {
     color: #E1D39E;
 }
+
+app-authorized {
+    display: flex;
+}

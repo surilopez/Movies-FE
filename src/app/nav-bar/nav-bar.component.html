@@ -5,33 +5,37 @@
   </a>
 </span>
     <div>
-        <a routerLink="Genre" mat-button>
-            <mat-icon>movie_filter</mat-icon> Genre
-        </a>
-    </div>
-
-    <div>
-        <a routerLink="Actors" mat-button>
-            <mat-icon>recent_actors</mat-icon> Actors
-        </a>
-    </div>
-
-    <div>
-        <a routerLink="Theater" mat-button>
-            <mat-icon>theaters</mat-icon> Theaters
-        </a>
-    </div>
-
-    <div>
-        <a routerLink="Movie/Add" mat-button>
-            <mat-icon>add_circle_outline</mat-icon> Add New Movie
-        </a>
-    </div>
-
-    <div>
         <a routerLink="Movie/Search" mat-button>
             <mat-icon>search</mat-icon> Search Movies
         </a>
     </div>
+    <app-authorized [rol]="'admin'">
+        <ng-container Authorized>
+            <div>
+                <a routerLink="Genre" mat-button>
+                    <mat-icon>movie_filter</mat-icon> Genre
+                </a>
+            </div>
+
+            <div>
+                <a routerLink="Actors" mat-button>
+                    <mat-icon>recent_actors</mat-icon> Actors
+                </a>
+            </div>
+
+            <div>
+                <a routerLink="Theater" mat-button>
+                    <mat-icon>theaters</mat-icon> Theaters
+                </a>
+            </div>
+
+            <div>
+                <a routerLink="Movie/Add" mat-button>
+                    <mat-icon>add_circle_outline</mat-icon> Add New Movie
+                </a>
+            </div>
+        </ng-container>
+    </app-authorized>
+
 
 </mat-toolbar>

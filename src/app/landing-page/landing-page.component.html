@@ -1,4 +1,5 @@
-<h2>Movies List On Theaters!</h2>
+<h2>
+    Movies List On Theaters!</h2>
 <mat-spinner *ngIf="!onTheaters"></mat-spinner>
 <app-list-movies *ngIf="onTheaters" [Movies]="onTheaters" (MovieWasDelete)="MovieWasDelete()"></app-list-movies>
 

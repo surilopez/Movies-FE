@@ -45,6 +45,8 @@ import { AutoCompleteActorsComponent } from './Actors/auto-complete-actors/auto-
 import { ShowErrorsComponent } from './Utils/show-errors/show-errors.component';
 import { GenericListComponent } from './Utils/generic-list/generic-list.component';
 import { MovieDetailsComponent } from './movies/movie-details/movie-details.component';
+import { AuthorizedComponent } from './security/authorized/authorized.component';
+import { LoginComponent } from './security/login/login.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +78,8 @@ import { MovieDetailsComponent } from './movies/movie-details/movie-details.comp
     ShowErrorsComponent,
     GenericListComponent,
     MovieDetailsComponent,
+    AuthorizedComponent,
+    LoginComponent,
 
   ],
   imports: [
