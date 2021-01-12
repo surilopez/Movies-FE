@@ -17,15 +17,20 @@ export class LandingPageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
+    this.LoadMovies()
+
+
+  }
+
+  private LoadMovies() {
     this.moviesService.GetLandingPage().subscribe(landingPage => {
       this.onTheaters = landingPage.onTheaters
       this.commingSoom = landingPage.commingSoom
-
-
     })
-
-
-
+  }
+  MovieWasDelete() {
+    this.LoadMovies()
   }
 
 }

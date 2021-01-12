@@ -31,6 +31,10 @@ export class MoviesService {
     const params = new HttpParams({ fromObject: values });
     return this.httpClient.get<MovieDTO[]>(`${this.apiUrl}/Filters`, { params, observe: 'response' });
   }
+  public GetByID(id: number): Observable<MovieDTO> {
+
+    return this.httpClient.get<MovieDTO>(`${this.apiUrl}/${id}`);
+  }
 
   public Add(movie: MovieCreationDTO): Observable<number> {
     const formData = this.BuildFormData(movie);
@@ -43,10 +47,10 @@ export class MoviesService {
     return this.httpClient.put(`${this.apiUrl}/${id}`, formData);
   }
 
-  public GetByID(id: number): Observable<MovieDTO> {
-
-    return this.httpClient.get<MovieDTO>(`${this.apiUrl}/${id}`);
+  delete(id: Number){
+    return this.httpClient.delete(`${this.apiUrl}/${id}`);
   }
+
 
   private BuildFormData(movie: MovieCreationDTO): FormData {
     const formData = new FormData();
