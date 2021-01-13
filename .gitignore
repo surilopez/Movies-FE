@@ -9,7 +9,8 @@
 
 # dependencies
 /node_modules
-/src/app/security
+/src/app/security/authorized
+/src/app/security/authorized.service.ts
 
 # profiling files
 chrome-profiler-events*.json

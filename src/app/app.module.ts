@@ -47,6 +47,8 @@ import { GenericListComponent } from './Utils/generic-list/generic-list.componen
 import { MovieDetailsComponent } from './movies/movie-details/movie-details.component';
 import { AuthorizedComponent } from './security/authorized/authorized.component';
 import { LoginComponent } from './security/login/login.component';
+import { RegisterComponent } from './security/register/register.component';
+import { FormAuthenticationComponent } from './security/form-authentication/form-authentication.component';
 
 @NgModule({
   declarations: [
@@ -80,6 +82,8 @@ import { LoginComponent } from './security/login/login.component';
     MovieDetailsComponent,
     AuthorizedComponent,
     LoginComponent,
+    RegisterComponent,
+    FormAuthenticationComponent,
 
   ],
   imports: [

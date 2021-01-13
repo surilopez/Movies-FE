@@ -16,6 +16,7 @@ import { FilterMovieComponent } from './movies/filter-movie/filter-movie.compone
 import { MovieDetailsComponent } from './movies/movie-details/movie-details.component';
 import { IsAdminGuard } from './is-admin.guard';
 import { LoginComponent } from './security/login/login.component';
+import { RegisterComponent } from './security/register/register.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -33,7 +34,8 @@ const routes: Routes = [
   { path: 'Movie/Search', component: FilterMovieComponent },
   { path: 'Movie/Edit/:id', component: EditMovieComponent,canActivate:[IsAdminGuard] },
   { path: 'Movie/:id', component: MovieDetailsComponent },
-  { path: 'login', component: LoginComponent },
+  { path: 'Login', component: LoginComponent },
+  { path: 'Register', component: RegisterComponent },
   { path: '**', redirectTo: '' }
 ];
 
