@@ -19,6 +19,10 @@ export function ParseErrorsAPI(response: any): string[] {
   if (response.error) {
     if (typeof response.error === 'string') {
       result.push(response.error)
+    } else if (Array.isArray(response.error)) {
+      response.error.forEach((element: { description: string; }) => {
+        result.push(element.description)
+      });
     } else {
       const errorMap = response.error.errors;
       const entries = Object.entries(errorMap);
@@ -43,8 +47,8 @@ export function formatDate(date: Date) {
   });
 
   const [
-    { value: month },,
-    { value: day },,
+    { value: month }, ,
+    { value: day }, ,
     { value: year }
   ] = format.formatToParts(date);
 

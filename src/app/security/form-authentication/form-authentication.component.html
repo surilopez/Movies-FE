@@ -1,1 +1,21 @@
-<p>form-authentication works!</p>
+<h3>{{action}}</h3>
+<app-show-errors [frmErrors]="frmErrors"></app-show-errors>
+
+<form (submit)="onSubmit.emit(authForm.value)" [formGroup]="authForm">
+    <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input formControlName="email" matInput required/>
+        <mat-error>{{GetErrorEmail()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input formControlName="password" matInput required type="password" />
+        <mat-error>Password is Required</mat-error>
+    </mat-form-field>
+
+    <div>
+        <button mat-flat-button color="primary" [disabled]="authForm.invalid">{{action}} </button>
+        <a mat-stroked-button routerLink="/" color="warn">Cancel</a>
+    </div>
+</form>
