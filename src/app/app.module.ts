@@ -49,6 +49,7 @@ import { AuthorizedComponent } from './security/authorized/authorized.component'
 import { LoginComponent } from './security/login/login.component';
 import { RegisterComponent } from './security/register/register.component';
 import { FormAuthenticationComponent } from './security/form-authentication/form-authentication.component';
+import { RatingComponent } from './Utils/rating/rating.component';
 
 @NgModule({
   declarations: [
@@ -84,6 +85,7 @@ import { FormAuthenticationComponent } from './security/form-authentication/form
     LoginComponent,
     RegisterComponent,
     FormAuthenticationComponent,
+    RatingComponent,
 
   ],
   imports: [

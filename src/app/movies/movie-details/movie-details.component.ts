@@ -54,7 +54,10 @@ export class MovieDetailsComponent implements OnInit {
       video_id = video_id.substring(0, ampersandPosition)
     }
     return this.sanitizer
-    .bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${video_id}`);
+      .bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${video_id}`);
   }
 
+  RateMovie(rate: number): void {
+    alert(rate)
+  }
 }
