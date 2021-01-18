@@ -51,6 +51,7 @@ import { RegisterComponent } from './security/register/register.component';
 import { FormAuthenticationComponent } from './security/form-authentication/form-authentication.component';
 import { RatingComponent } from './Utils/rating/rating.component';
 import { SecurityInterceptorService } from './Services/security-interceptor.service';
+import { IndexUsersComponent } from './security/index-users/index-users.component';
 
 @NgModule({
   declarations: [
@@ -87,6 +88,7 @@ import { SecurityInterceptorService } from './Services/security-interceptor.serv
     RegisterComponent,
     FormAuthenticationComponent,
     RatingComponent,
+    IndexUsersComponent,
 
   ],
   imports: [

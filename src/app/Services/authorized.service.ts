@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { AuthenticationResponse, CredentialsUser } from '../Models/security';
+import { AuthenticationResponse, CredentialsUser, UserDTO } from '../Models/security';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +13,28 @@ export class AuthorizedService {
 
   private readonly tokenKey = 'token';
   private readonly expirationKey = 'token-expiration';
+  private readonly fieldRole = 'role';
+
+
 
   constructor(private httpClient: HttpClient) { }
+
+  GetUserList(page: number, recordsToShow: number): Observable<any> {
+    let params = new HttpParams();
+    params = params.append('Page', page.toString())
+    params = params.append('RecordsByPage', recordsToShow.toString())
+    return this.httpClient.get<UserDTO[]>(`${this.apiUrl}/UserList`, { observe: 'response', params })
+  }
+
+  AddRoleAdmin(userId: string) {
+    const headers = new HttpHeaders('Content-Type: application/json')
+    return this.httpClient.post(`${this.apiUrl}/AddRoleAdmin`, JSON.stringify(userId), { headers })
+  }
+
+  RemoveRoleAdmin(userId: string) {
+    const headers = new HttpHeaders('Content-Type: application/json')
+    return this.httpClient.post(`${this.apiUrl}/RemoveRoleAdmin`, JSON.stringify(userId), { headers })
+  }
 
 
   logged(): boolean {
@@ -42,7 +62,7 @@ export class AuthorizedService {
   }
 
   getRol(): string {
-    return ''
+    return this.GetJWTField(this.fieldRole)
   }
 
   Register(credential: CredentialsUser): Observable<AuthenticationResponse> {
@@ -68,7 +88,7 @@ export class AuthorizedService {
     localStorage.setItem(this.expirationKey, authenticationResponse.expiration.toString())
   }
 
-  GetToken(){
+  GetToken() {
     return localStorage.getItem(this.tokenKey)
   }
 }

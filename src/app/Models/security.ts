@@ -10,4 +10,9 @@ export interface AuthenticationResponse{
   expiration:Date
 }
 
+export interface UserDTO{
+  id:string,
+  email: string,
+}
+
 
