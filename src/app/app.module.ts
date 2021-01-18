@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule} from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
 
 import {MarkdownModule} from 'ngx-markdown';
 import {LeafletModule} from '@asymmetrik/ngx-leaflet'
@@ -50,6 +50,7 @@ import { LoginComponent } from './security/login/login.component';
 import { RegisterComponent } from './security/register/register.component';
 import { FormAuthenticationComponent } from './security/form-authentication/form-authentication.component';
 import { RatingComponent } from './Utils/rating/rating.component';
+import { SecurityInterceptorService } from './Services/security-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -100,7 +101,12 @@ import { RatingComponent } from './Utils/rating/rating.component';
     MarkdownModule.forRoot(),
     SweetAlert2Module.forRoot()
   ],
-  providers: [],
+  providers: [{
+   provide: HTTP_INTERCEPTORS,
+   useClass: SecurityInterceptorService,
+   multi:true
+
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

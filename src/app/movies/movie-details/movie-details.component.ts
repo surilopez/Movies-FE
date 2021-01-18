@@ -3,7 +3,9 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { MovieDTO } from 'src/app/Models/movies';
 import { MoviesService } from 'src/app/Services/movies.service';
+import { RaitingService } from 'src/app/Services/raiting.service';
 import { Coordinates, CoordinatesWithMesage } from 'src/app/Utils/maps/position';
+import Swal from 'sweetalert2';
 import { runInThisContext } from 'vm';
 
 @Component({
@@ -15,10 +17,11 @@ export class MovieDetailsComponent implements OnInit {
 
   constructor(
     private moviesService: MoviesService,
+    private ratingService: RaitingService,
     private activateRoute: ActivatedRoute,
     private sanitizer: DomSanitizer) { }
 
-  movieDTO?: MovieDTO
+  movieDTO!: MovieDTO
   releaseDate: Date = new Date();
   trailerURL?: SafeResourceUrl
   locations: CoordinatesWithMesage[] = []
@@ -58,6 +61,10 @@ export class MovieDetailsComponent implements OnInit {
   }
 
   RateMovie(rate: number): void {
-    alert(rate)
+    this.ratingService.Rate(this.movieDTO.id, rate)
+      .subscribe(() => {
+        Swal.fire("Success", "Your vote has been received",'success')
+      })
+
   }
 }

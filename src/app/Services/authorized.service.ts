@@ -68,4 +68,7 @@ export class AuthorizedService {
     localStorage.setItem(this.expirationKey, authenticationResponse.expiration.toString())
   }
 
+  GetToken(){
+    return localStorage.getItem(this.tokenKey)
+  }
 }

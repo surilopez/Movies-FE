@@ -6,15 +6,14 @@
                 {{genre.name}}
             </mat-chip>
         </mat-chip-list>
-        | {{releaseDate.toDateString()}} | Rating: 0.0 | Your Vote: 0.0
-        <app-rating (rated)="RateMovie($event)"></app-rating>
+        | {{releaseDate.toDateString()}} | Rating: {{movieDTO.averageVote}} | Your Vote:
+        <app-rating (rated)="RateMovie($event)" [selectedRating]="movieDTO.userVote"></app-rating>
         <div style="display: flex;">
             <span style="display: inline-block; margin-right: 1rem;">
               <img [src]="movieDTO.img" style="width: 225px; height: 315px;"/>
             </span>
             <div *ngIf="movieDTO.trailer">
                 <iframe width="560" height="315" [src]="trailerURL" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/X4blXplDYII" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
             </div>
         </div>
         <div style="margin-top: 1rem;">
